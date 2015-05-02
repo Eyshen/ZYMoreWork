@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "UIKit+AFNetworking.h"
 @interface BaseViewController : UIViewController
 
 //添加返回按钮

@@ -20,7 +20,25 @@
 }
 -(void)addBackItem
 {
+    UIButton *btn=[UIButton buttonWithType:UIButtonTypeSystem];
+    UIImage *img=[[UIImage imageNamed:@"backItem"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    [btn setImage:img forState:UIControlStateNormal];
     
+    btn.frame=CGRectMake(0, 0, 30, 30);
+    [btn addTarget:self action:@selector(popBack) forControlEvents:UIControlEventTouchUpInside];
+    
+    UIBarButtonItem *item=[[UIBarButtonItem alloc]initWithCustomView:btn];
+    
+    //修改距离,距离边缘的 占位符按钮
+    UIBarButtonItem *spaceItem=[[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
+    spaceItem.width=-15;
+    
+    //解决 这个回拉的问题;
+    self.navigationItem.leftBarButtonItems=@[spaceItem,item];
+}
+-(void)popBack
+{
+    [self.navigationController popToRootViewControllerAnimated:YES];
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

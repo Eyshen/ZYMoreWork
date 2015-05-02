@@ -45,6 +45,11 @@
 		A118D4851AF2280F009FB802 /* BaseNavigationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A118D4841AF2280F009FB802 /* BaseNavigationViewController.m */; };
 		A118D4881AF22D02009FB802 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A118D4871AF22D02009FB802 /* BaseViewController.m */; };
 		A118D48B1AF24505009FB802 /* WorkViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A118D48A1AF24505009FB802 /* WorkViewController.m */; };
+		A11D60DE1AF4F82300DF0ADE /* XiangQingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A11D60DD1AF4F82300DF0ADE /* XiangQingViewController.m */; };
+		A1971B521AF3848B007A034B /* FindWorkParse.m in Sources */ = {isa = PBXBuildFile; fileRef = A1971B4D1AF3848B007A034B /* FindWorkParse.m */; };
+		A1971B531AF3848B007A034B /* GongTuanParse.m in Sources */ = {isa = PBXBuildFile; fileRef = A1971B4F1AF3848B007A034B /* GongTuanParse.m */; };
+		A1971B541AF3848B007A034B /* MendianParse.m in Sources */ = {isa = PBXBuildFile; fileRef = A1971B511AF3848B007A034B /* MendianParse.m */; };
+		A1971B571AF38497007A034B /* FindNetWork.m in Sources */ = {isa = PBXBuildFile; fileRef = A1971B561AF38497007A034B /* FindNetWork.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -124,6 +129,16 @@
 		A118D4871AF22D02009FB802 /* BaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseViewController.m; sourceTree = "<group>"; };
 		A118D4891AF24505009FB802 /* WorkViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WorkViewController.h; sourceTree = "<group>"; };
 		A118D48A1AF24505009FB802 /* WorkViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WorkViewController.m; sourceTree = "<group>"; };
+		A11D60DC1AF4F82300DF0ADE /* XiangQingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XiangQingViewController.h; sourceTree = "<group>"; };
+		A11D60DD1AF4F82300DF0ADE /* XiangQingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XiangQingViewController.m; sourceTree = "<group>"; };
+		A1971B4C1AF3848B007A034B /* FindWorkParse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FindWorkParse.h; sourceTree = "<group>"; };
+		A1971B4D1AF3848B007A034B /* FindWorkParse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FindWorkParse.m; sourceTree = "<group>"; };
+		A1971B4E1AF3848B007A034B /* GongTuanParse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GongTuanParse.h; sourceTree = "<group>"; };
+		A1971B4F1AF3848B007A034B /* GongTuanParse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GongTuanParse.m; sourceTree = "<group>"; };
+		A1971B501AF3848B007A034B /* MendianParse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MendianParse.h; sourceTree = "<group>"; };
+		A1971B511AF3848B007A034B /* MendianParse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MendianParse.m; sourceTree = "<group>"; };
+		A1971B551AF38497007A034B /* FindNetWork.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FindNetWork.h; sourceTree = "<group>"; };
+		A1971B561AF38497007A034B /* FindNetWork.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FindNetWork.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -246,6 +261,8 @@
 		A118D41A1AF21CE1009FB802 /* 找工作 */ = {
 			isa = PBXGroup;
 			children = (
+				A11D60DA1AF4F7FD00DF0ADE /* 报名 */,
+				A11D60DB1AF4F7FD00DF0ADE /* 详情 */,
 				A118D47B1AF221B1009FB802 /* Work.storyboard */,
 				A118D4891AF24505009FB802 /* WorkViewController.h */,
 				A118D48A1AF24505009FB802 /* WorkViewController.m */,
@@ -290,6 +307,12 @@
 		A118D41F1AF21CE1009FB802 /* 解析 */ = {
 			isa = PBXGroup;
 			children = (
+				A1971B4C1AF3848B007A034B /* FindWorkParse.h */,
+				A1971B4D1AF3848B007A034B /* FindWorkParse.m */,
+				A1971B4E1AF3848B007A034B /* GongTuanParse.h */,
+				A1971B4F1AF3848B007A034B /* GongTuanParse.m */,
+				A1971B501AF3848B007A034B /* MendianParse.h */,
+				A1971B511AF3848B007A034B /* MendianParse.m */,
 			);
 			path = "解析";
 			sourceTree = "<group>";
@@ -297,6 +320,8 @@
 		A118D4201AF21CE1009FB802 /* 请求 */ = {
 			isa = PBXGroup;
 			children = (
+				A1971B551AF38497007A034B /* FindNetWork.h */,
+				A1971B561AF38497007A034B /* FindNetWork.m */,
 			);
 			path = "请求";
 			sourceTree = "<group>";
@@ -391,6 +416,22 @@
 			path = MJRefresh;
 			sourceTree = "<group>";
 		};
+		A11D60DA1AF4F7FD00DF0ADE /* 报名 */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "报名";
+			sourceTree = "<group>";
+		};
+		A11D60DB1AF4F7FD00DF0ADE /* 详情 */ = {
+			isa = PBXGroup;
+			children = (
+				A11D60DC1AF4F82300DF0ADE /* XiangQingViewController.h */,
+				A11D60DD1AF4F82300DF0ADE /* XiangQingViewController.m */,
+			);
+			path = "详情";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -475,12 +516,14 @@
 				A118D4741AF21D71009FB802 /* UIScrollView+MJRefresh.m in Sources */,
 				A118D44B1AF21D20009FB802 /* AFHTTPRequestOperation.m in Sources */,
 				A118D4721AF21D71009FB802 /* MJRefreshHeaderView.m in Sources */,
+				A1971B571AF38497007A034B /* FindNetWork.m in Sources */,
 				A118D3F51AF2109D009FB802 /* ZYMoreWork.xcdatamodeld in Sources */,
 				A118D46F1AF21D71009FB802 /* MJRefreshBaseView.m in Sources */,
 				A118D4701AF21D71009FB802 /* MJRefreshConst.m in Sources */,
 				A118D44C1AF21D20009FB802 /* AFHTTPRequestOperationManager.m in Sources */,
 				A118D4541AF21D20009FB802 /* MLBlackTransition.m in Sources */,
 				A118D44E1AF21D20009FB802 /* AFNetworkReachabilityManager.m in Sources */,
+				A11D60DE1AF4F82300DF0ADE /* XiangQingViewController.m in Sources */,
 				A118D48B1AF24505009FB802 /* WorkViewController.m in Sources */,
 				A118D4881AF22D02009FB802 /* BaseViewController.m in Sources */,
 				A118D4591AF21D20009FB802 /* UIImageView+AFNetworking.m in Sources */,
@@ -495,6 +538,9 @@
 				A118D45C1AF21D20009FB802 /* UIWebView+AFNetworking.m in Sources */,
 				A118D3F21AF2109D009FB802 /* AppDelegate.m in Sources */,
 				A118D4551AF21D20009FB802 /* AFNetworkActivityIndicatorManager.m in Sources */,
+				A1971B541AF3848B007A034B /* MendianParse.m in Sources */,
+				A1971B521AF3848B007A034B /* FindWorkParse.m in Sources */,
+				A1971B531AF3848B007A034B /* GongTuanParse.m in Sources */,
 				A118D3EF1AF2109D009FB802 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
