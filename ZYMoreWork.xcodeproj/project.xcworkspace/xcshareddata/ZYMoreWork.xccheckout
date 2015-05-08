@@ -7,14 +7,14 @@
 	<key>IDESourceControlProjectIdentifier</key>
 	<string>510F53C4-2BE3-4B80-83C6-94B6AA7BF064</string>
 	<key>IDESourceControlProjectName</key>
-	<string>project</string>
+	<string>ZYMoreWork</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
 		<key>D7B8EF2119AB7CA2E324070556A3D4CE28F10B7C</key>
 		<string>https://github.com/Eyshen/ZYMoreWork.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>ZYMoreWork.xcodeproj/project.xcworkspace</string>
+	<string>ZYMoreWork.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>D7B8EF2119AB7CA2E324070556A3D4CE28F10B7C</key>

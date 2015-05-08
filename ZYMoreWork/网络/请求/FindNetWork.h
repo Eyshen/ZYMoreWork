@@ -11,12 +11,23 @@
 #import "FindWorkParse.h"
 #import "GongTuanParse.h"
 #import "MendianParse.h"
+#import "IosjobParse.h"
+#import "XiangQIngParse.h"
 @interface FindNetWork : NSObject
 
 //获取第一页数据请求
 +(void)getFindWorkSuccess:(void(^)(FindWorkParse *parse))success failure:(void(^)(NSString *errorMessage))failure withIDStr:(NSString *)idStr withGangID:(NSString *)gangStr withSort:(NSString *)sortStr;
 
+#pragma mark----第一页公司详情
++(void)getCompanyInfoSuccess:(void(^)(XiangQIngParse *parse))success failure:(void(^)(NSString *errorMessage))failure withCompanyID:(NSString *)companyId;
+
 +(void)getFindGongTuanSuccess:(void(^)(GongTuanParse *parse))success failure:(void(^)(NSString *errorMessage))failure;
 
 +(void)getFIndMendianSuccess:(void(^)(MendianParse *parse))success failure:(void(^)(NSString *errorMessage))failure;
+
+//第二页请求;
++(void)getIosjobSuccess:(void (^)(IosjobParse *parse))success failure:(void (^)(NSString *errorMessage))failure pageSize:(NSString *)pageSize;
+
+
+
 @end

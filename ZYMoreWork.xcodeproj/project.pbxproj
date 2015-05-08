@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A10230AA1AFC8730002FE71B /* XiangQIngParse.m in Sources */ = {isa = PBXBuildFile; fileRef = A10230A91AFC8730002FE71B /* XiangQIngParse.m */; };
 		A118D3EF1AF2109D009FB802 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A118D3EE1AF2109D009FB802 /* main.m */; };
 		A118D3F21AF2109D009FB802 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A118D3F11AF2109D009FB802 /* AppDelegate.m */; };
 		A118D3F51AF2109D009FB802 /* ZYMoreWork.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A118D3F31AF2109D009FB802 /* ZYMoreWork.xcdatamodeld */; };
@@ -46,13 +47,26 @@
 		A118D4881AF22D02009FB802 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A118D4871AF22D02009FB802 /* BaseViewController.m */; };
 		A118D48B1AF24505009FB802 /* WorkViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A118D48A1AF24505009FB802 /* WorkViewController.m */; };
 		A11D60DE1AF4F82300DF0ADE /* XiangQingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A11D60DD1AF4F82300DF0ADE /* XiangQingViewController.m */; };
+		A16B45DD1AFCEBF3007F50CE /* BaomingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A16B45DC1AFCEBF3007F50CE /* BaomingViewController.m */; };
+		A16B45E01AFCF9AB007F50CE /* BaomingSuccessViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A16B45DF1AFCF9AB007F50CE /* BaomingSuccessViewController.m */; };
 		A1971B521AF3848B007A034B /* FindWorkParse.m in Sources */ = {isa = PBXBuildFile; fileRef = A1971B4D1AF3848B007A034B /* FindWorkParse.m */; };
 		A1971B531AF3848B007A034B /* GongTuanParse.m in Sources */ = {isa = PBXBuildFile; fileRef = A1971B4F1AF3848B007A034B /* GongTuanParse.m */; };
 		A1971B541AF3848B007A034B /* MendianParse.m in Sources */ = {isa = PBXBuildFile; fileRef = A1971B511AF3848B007A034B /* MendianParse.m */; };
 		A1971B571AF38497007A034B /* FindNetWork.m in Sources */ = {isa = PBXBuildFile; fileRef = A1971B561AF38497007A034B /* FindNetWork.m */; };
+		A1AE23F11AFC4A5700330826 /* CompanyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A1AE23F01AFC4A5700330826 /* CompanyViewController.m */; };
+		A1E0AA451AFB3CF40065A34D /* ITViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A1E0AA441AFB3CF40065A34D /* ITViewController.m */; };
+		A1E0AA481AFB3DEF0065A34D /* IosjobParse.m in Sources */ = {isa = PBXBuildFile; fileRef = A1E0AA471AFB3DEF0065A34D /* IosjobParse.m */; };
+		A1E0AA4E1AFB496B0065A34D /* ChoosePersonView.m in Sources */ = {isa = PBXBuildFile; fileRef = A1E0AA4B1AFB496B0065A34D /* ChoosePersonView.m */; };
+		A1E0AA4F1AFB496B0065A34D /* ImageLabelView.m in Sources */ = {isa = PBXBuildFile; fileRef = A1E0AA4D1AFB496B0065A34D /* ImageLabelView.m */; };
+		A1E0AA521AFB49D20065A34D /* Person.m in Sources */ = {isa = PBXBuildFile; fileRef = A1E0AA511AFB49D20065A34D /* Person.m */; };
+		C3E9B257D46478062D60EA7F /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 67833970FBA101880F2694D3 /* libPods.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		49218BEE9D34832B2CE80E36 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		67833970FBA101880F2694D3 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		A10230A81AFC8730002FE71B /* XiangQIngParse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XiangQIngParse.h; sourceTree = "<group>"; };
+		A10230A91AFC8730002FE71B /* XiangQIngParse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XiangQIngParse.m; sourceTree = "<group>"; };
 		A118D3E91AF2109D009FB802 /* ZYMoreWork.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ZYMoreWork.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A118D3ED1AF2109D009FB802 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A118D3EE1AF2109D009FB802 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -131,6 +145,10 @@
 		A118D48A1AF24505009FB802 /* WorkViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WorkViewController.m; sourceTree = "<group>"; };
 		A11D60DC1AF4F82300DF0ADE /* XiangQingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XiangQingViewController.h; sourceTree = "<group>"; };
 		A11D60DD1AF4F82300DF0ADE /* XiangQingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XiangQingViewController.m; sourceTree = "<group>"; };
+		A16B45DB1AFCEBF3007F50CE /* BaomingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaomingViewController.h; sourceTree = "<group>"; };
+		A16B45DC1AFCEBF3007F50CE /* BaomingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaomingViewController.m; sourceTree = "<group>"; };
+		A16B45DE1AFCF9AB007F50CE /* BaomingSuccessViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaomingSuccessViewController.h; sourceTree = "<group>"; };
+		A16B45DF1AFCF9AB007F50CE /* BaomingSuccessViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaomingSuccessViewController.m; sourceTree = "<group>"; };
 		A1971B4C1AF3848B007A034B /* FindWorkParse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FindWorkParse.h; sourceTree = "<group>"; };
 		A1971B4D1AF3848B007A034B /* FindWorkParse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FindWorkParse.m; sourceTree = "<group>"; };
 		A1971B4E1AF3848B007A034B /* GongTuanParse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GongTuanParse.h; sourceTree = "<group>"; };
@@ -139,6 +157,19 @@
 		A1971B511AF3848B007A034B /* MendianParse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MendianParse.m; sourceTree = "<group>"; };
 		A1971B551AF38497007A034B /* FindNetWork.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FindNetWork.h; sourceTree = "<group>"; };
 		A1971B561AF38497007A034B /* FindNetWork.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FindNetWork.m; sourceTree = "<group>"; };
+		A1AE23EF1AFC4A5700330826 /* CompanyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CompanyViewController.h; path = ../CompanyViewController.h; sourceTree = "<group>"; };
+		A1AE23F01AFC4A5700330826 /* CompanyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CompanyViewController.m; path = ../CompanyViewController.m; sourceTree = "<group>"; };
+		A1E0AA431AFB3CF40065A34D /* ITViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ITViewController.h; sourceTree = "<group>"; };
+		A1E0AA441AFB3CF40065A34D /* ITViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ITViewController.m; sourceTree = "<group>"; };
+		A1E0AA461AFB3DEF0065A34D /* IosjobParse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IosjobParse.h; sourceTree = "<group>"; };
+		A1E0AA471AFB3DEF0065A34D /* IosjobParse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IosjobParse.m; sourceTree = "<group>"; };
+		A1E0AA4A1AFB496B0065A34D /* ChoosePersonView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChoosePersonView.h; sourceTree = "<group>"; };
+		A1E0AA4B1AFB496B0065A34D /* ChoosePersonView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChoosePersonView.m; sourceTree = "<group>"; };
+		A1E0AA4C1AFB496B0065A34D /* ImageLabelView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageLabelView.h; sourceTree = "<group>"; };
+		A1E0AA4D1AFB496B0065A34D /* ImageLabelView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageLabelView.m; sourceTree = "<group>"; };
+		A1E0AA501AFB49D20065A34D /* Person.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Person.h; sourceTree = "<group>"; };
+		A1E0AA511AFB49D20065A34D /* Person.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Person.m; sourceTree = "<group>"; };
+		B1B9F9B206CB3765BC5C6A20 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -146,12 +177,21 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C3E9B257D46478062D60EA7F /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6C1F686ED3FB7450DA4BA252 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				67833970FBA101880F2694D3 /* libPods.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		A118D3E01AF2109D009FB802 = {
 			isa = PBXGroup;
 			children = (
@@ -162,6 +202,8 @@
 				A118D3EB1AF2109D009FB802 /* ZYMoreWork */,
 				A118D4081AF2109D009FB802 /* ZYMoreWorkTests */,
 				A118D3EA1AF2109D009FB802 /* Products */,
+				A23FFF65907B078D72DF870A /* Pods */,
+				6C1F686ED3FB7450DA4BA252 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -228,7 +270,7 @@
 			isa = PBXGroup;
 			children = (
 				A118D4181AF21CE1009FB802 /* 基础视图 */,
-				A118D4191AF21CE1009FB802 /* 打工团 */,
+				A118D4191AF21CE1009FB802 /* 互联网 */,
 				A118D41A1AF21CE1009FB802 /* 找工作 */,
 				A118D41B1AF21CE1009FB802 /* 找门店 */,
 				A118D41C1AF21CE1009FB802 /* 设置 */,
@@ -250,11 +292,16 @@
 			path = "基础视图";
 			sourceTree = "<group>";
 		};
-		A118D4191AF21CE1009FB802 /* 打工团 */ = {
+		A118D4191AF21CE1009FB802 /* 互联网 */ = {
 			isa = PBXGroup;
 			children = (
+				A1AE23F21AFC508400330826 /* 公司详情 */,
+				A1E0AA491AFB464B0065A34D /* 工作卡片 */,
 				A118D47D1AF221D9009FB802 /* Gongtuan.storyboard */,
+				A1E0AA431AFB3CF40065A34D /* ITViewController.h */,
+				A1E0AA441AFB3CF40065A34D /* ITViewController.m */,
 			);
+			name = "互联网";
 			path = "打工团";
 			sourceTree = "<group>";
 		};
@@ -313,6 +360,10 @@
 				A1971B4F1AF3848B007A034B /* GongTuanParse.m */,
 				A1971B501AF3848B007A034B /* MendianParse.h */,
 				A1971B511AF3848B007A034B /* MendianParse.m */,
+				A1E0AA461AFB3DEF0065A34D /* IosjobParse.h */,
+				A1E0AA471AFB3DEF0065A34D /* IosjobParse.m */,
+				A10230A81AFC8730002FE71B /* XiangQIngParse.h */,
+				A10230A91AFC8730002FE71B /* XiangQIngParse.m */,
 			);
 			path = "解析";
 			sourceTree = "<group>";
@@ -419,6 +470,10 @@
 		A11D60DA1AF4F7FD00DF0ADE /* 报名 */ = {
 			isa = PBXGroup;
 			children = (
+				A16B45DB1AFCEBF3007F50CE /* BaomingViewController.h */,
+				A16B45DC1AFCEBF3007F50CE /* BaomingViewController.m */,
+				A16B45DE1AFCF9AB007F50CE /* BaomingSuccessViewController.h */,
+				A16B45DF1AFCF9AB007F50CE /* BaomingSuccessViewController.m */,
 			);
 			path = "报名";
 			sourceTree = "<group>";
@@ -432,6 +487,37 @@
 			path = "详情";
 			sourceTree = "<group>";
 		};
+		A1AE23F21AFC508400330826 /* 公司详情 */ = {
+			isa = PBXGroup;
+			children = (
+				A1AE23EF1AFC4A5700330826 /* CompanyViewController.h */,
+				A1AE23F01AFC4A5700330826 /* CompanyViewController.m */,
+			);
+			path = "公司详情";
+			sourceTree = "<group>";
+		};
+		A1E0AA491AFB464B0065A34D /* 工作卡片 */ = {
+			isa = PBXGroup;
+			children = (
+				A1E0AA501AFB49D20065A34D /* Person.h */,
+				A1E0AA511AFB49D20065A34D /* Person.m */,
+				A1E0AA4A1AFB496B0065A34D /* ChoosePersonView.h */,
+				A1E0AA4B1AFB496B0065A34D /* ChoosePersonView.m */,
+				A1E0AA4C1AFB496B0065A34D /* ImageLabelView.h */,
+				A1E0AA4D1AFB496B0065A34D /* ImageLabelView.m */,
+			);
+			path = "工作卡片";
+			sourceTree = "<group>";
+		};
+		A23FFF65907B078D72DF870A /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				B1B9F9B206CB3765BC5C6A20 /* Pods.debug.xcconfig */,
+				49218BEE9D34832B2CE80E36 /* Pods.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -439,9 +525,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = A118D40F1AF2109D009FB802 /* Build configuration list for PBXNativeTarget "ZYMoreWork" */;
 			buildPhases = (
+				2A8E038023A40A2139E37C66 /* Check Pods Manifest.lock */,
 				A118D3E51AF2109D009FB802 /* Sources */,
 				A118D3E61AF2109D009FB802 /* Frameworks */,
 				A118D3E71AF2109D009FB802 /* Resources */,
+				B8F438E0B363068CFB6CE755 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -500,6 +588,39 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		2A8E038023A40A2139E37C66 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		B8F438E0B363068CFB6CE755 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		A118D3E51AF2109D009FB802 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -513,7 +634,10 @@
 				A118D45B1AF21D20009FB802 /* UIRefreshControl+AFNetworking.m in Sources */,
 				A118D4571AF21D20009FB802 /* UIAlertView+AFNetworking.m in Sources */,
 				A118D4781AF21DD0009FB802 /* BaseTabBarViewController.m in Sources */,
+				A1E0AA4E1AFB496B0065A34D /* ChoosePersonView.m in Sources */,
+				A1AE23F11AFC4A5700330826 /* CompanyViewController.m in Sources */,
 				A118D4741AF21D71009FB802 /* UIScrollView+MJRefresh.m in Sources */,
+				A1E0AA4F1AFB496B0065A34D /* ImageLabelView.m in Sources */,
 				A118D44B1AF21D20009FB802 /* AFHTTPRequestOperation.m in Sources */,
 				A118D4721AF21D71009FB802 /* MJRefreshHeaderView.m in Sources */,
 				A1971B571AF38497007A034B /* FindNetWork.m in Sources */,
@@ -526,16 +650,22 @@
 				A11D60DE1AF4F82300DF0ADE /* XiangQingViewController.m in Sources */,
 				A118D48B1AF24505009FB802 /* WorkViewController.m in Sources */,
 				A118D4881AF22D02009FB802 /* BaseViewController.m in Sources */,
+				A10230AA1AFC8730002FE71B /* XiangQIngParse.m in Sources */,
 				A118D4591AF21D20009FB802 /* UIImageView+AFNetworking.m in Sources */,
+				A1E0AA481AFB3DEF0065A34D /* IosjobParse.m in Sources */,
 				A118D4731AF21D71009FB802 /* UIScrollView+MJExtension.m in Sources */,
+				A16B45E01AFCF9AB007F50CE /* BaomingSuccessViewController.m in Sources */,
 				A118D4521AF21D20009FB802 /* AFURLResponseSerialization.m in Sources */,
+				A16B45DD1AFCEBF3007F50CE /* BaomingViewController.m in Sources */,
 				A118D4561AF21D20009FB802 /* UIActivityIndicatorView+AFNetworking.m in Sources */,
 				A118D4501AF21D20009FB802 /* AFURLConnectionOperation.m in Sources */,
 				A118D44F1AF21D20009FB802 /* AFSecurityPolicy.m in Sources */,
+				A1E0AA521AFB49D20065A34D /* Person.m in Sources */,
 				A118D44D1AF21D20009FB802 /* AFHTTPSessionManager.m in Sources */,
 				A118D4511AF21D20009FB802 /* AFURLRequestSerialization.m in Sources */,
 				A118D4531AF21D20009FB802 /* AFURLSessionManager.m in Sources */,
 				A118D45C1AF21D20009FB802 /* UIWebView+AFNetworking.m in Sources */,
+				A1E0AA451AFB3CF40065A34D /* ITViewController.m in Sources */,
 				A118D3F21AF2109D009FB802 /* AppDelegate.m in Sources */,
 				A118D4551AF21D20009FB802 /* AFNetworkActivityIndicatorManager.m in Sources */,
 				A1971B541AF3848B007A034B /* MendianParse.m in Sources */,
@@ -630,9 +760,11 @@
 		};
 		A118D4101AF2109D009FB802 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B1B9F9B206CB3765BC5C6A20 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Chunhua Zhu (PWMKL3ZU9D)";
 				GCC_PREFIX_HEADER = ZYMoreWork/ZYMoreWork.pch;
 				INFOPLIST_FILE = ZYMoreWork/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
@@ -643,9 +775,11 @@
 		};
 		A118D4111AF2109D009FB802 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 49218BEE9D34832B2CE80E36 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Chunhua Zhu (PWMKL3ZU9D)";
 				GCC_PREFIX_HEADER = ZYMoreWork/ZYMoreWork.pch;
 				INFOPLIST_FILE = ZYMoreWork/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;

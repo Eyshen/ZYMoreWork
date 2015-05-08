@@ -19,18 +19,19 @@
     //tabbar 改为不透明
     self.tabBar.translucent=NO;
     //设置背景图
-    self.tabBar.backgroundImage=[UIImage imageNamed:@"tabBar_ip6"];
+    self.tabBar.backgroundImage=[[UIImage imageNamed:@"tabBar_ip6"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    
     
     //找工作
     //初始化故事板
     UIStoryboard *storyboard=[UIStoryboard storyboardWithName:@"Work" bundle:nil];
     UINavigationController *workNavi=[storyboard instantiateInitialViewController];
 //    [UIImage imageNamed:@"打工团-灰"
-    workNavi.tabBarItem=[self tabBarItemWithName:@"找工作" imageName:@"找工作-灰" selectedImageName:@"找工作-红"];
+    workNavi.tabBarItem=[self tabBarItemWithName:@"传统行业" imageName:@"找工作-灰" selectedImageName:@"找工作-红"];
     //打工团
     UINavigationController *gongtuanNavi=[[UIStoryboard storyboardWithName:@"Gongtuan" bundle:nil]instantiateInitialViewController];
     
-     gongtuanNavi.tabBarItem=[self tabBarItemWithName:@"打工团" imageName:@"打工团-灰" selectedImageName:@"打工团-红"];
+     gongtuanNavi.tabBarItem=[self tabBarItemWithName:@"互联网" imageName:@"打工团-灰" selectedImageName:@"打工团-红"];
     //找门店
     UINavigationController *mendianNavi=[[UIStoryboard storyboardWithName:@"Mendian" bundle:nil]instantiateInitialViewController];
     

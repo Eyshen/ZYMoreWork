@@ -7,7 +7,8 @@
 //
 
 #import "WorkViewController.h"
-
+#import "XiangQingViewController.h"
+#import "BaomingViewController.h"
 @interface WorkViewController ()<UITableViewDataSource,UITableViewDelegate,UIScrollViewDelegate>
 @property (weak, nonatomic) IBOutlet UITextField *searchWork;
 @property (weak, nonatomic) IBOutlet UIView *lineView;
@@ -41,8 +42,7 @@
     _kindStr=[NSString new];
     _quyuStr=@"0";
     _kindStr=@"0";
-    [self setSelectedView];
-    _thirdidArr=@[@"0",@"4227",@"4253",@"4276",@"4298",@"4311",@"4334",@"4357",@"4378"];
+  _thirdidArr=@[@"0",@"4227",@"4253",@"4276",@"4298",@"4311",@"4334",@"4357",@"4378"];
     [FindNetWork getFindWorkSuccess:^(FindWorkParse *parse) {
         _workParse=parse;
         NSLog(@"下载成功");
@@ -55,6 +55,14 @@
     }withIDStr:@"0" withGangID:@"0" withSort:@"0"];
     
 }
+-(void)viewDidLayoutSubviews
+{
+    if(!_quyuView)
+    {
+        [self setSelectedView];
+    }
+    
+}
 //搜索按钮事件
 - (IBAction)searchBtnClick:(UIButton *)sender {
     [_searchWork resignFirstResponder];
@@ -62,9 +70,27 @@
 //收起键盘
 -(void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
 {
-    NSLog(@"111");
+    
     [_searchWork resignFirstResponder];
 }
+#pragma mark---公司详情 和 报名按钮
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    
+    if ([segue.identifier isEqualToString:@"XiangQingViewController"]) {
+        XiangQingViewController *xiangqingVC=segue.destinationViewController;
+        NSIndexPath *indexPath=[_myTableView indexPathForCell:sender];
+        NSArray *arr=_workParse.listData[indexPath.section];
+        FindWorkInfo *info=arr[indexPath.row];
+        xiangqingVC.zhaopinid=info.myid;
+//        NSLog(@"走几次");
+    }else if([segue.identifier isEqualToString:@"BaomingViewController"]){
+        BaomingViewController *baomingVC=segue.destinationViewController;
+        
+    }
+}
+
+
 
 //三个按钮的点击事件
 - (IBAction)btnClick:(UIButton *)sender {
@@ -142,7 +168,7 @@
         return 1;
     }
     NSArray *arr=_workParse.listData[section];
-    NSLog(@"每个分区多少行%u",arr.count);
+    NSLog(@"每个分区多少行%lu",arr.count);
     return arr.count;
 }
 //每个cell的高度
@@ -201,16 +227,33 @@
     }
     UIButton *btn=[UIButton buttonWithType:UIButtonTypeSystem];
     btn.frame=CGRectMake(0, 0, self.view.frame.size.width, 35);
-    NSString *titleStr=[NSString stringWithFormat:@"该企业还有其他%u条岗位也在招聘",arr.count-1];
-    [btn setTitle:titleStr forState:UIControlStateNormal];
+    
+    
+    
+//    [btn setTitle:str forState:UIControlStateNormal];
     
     btn.backgroundColor=[UIColor colorWithWhite:0.961 alpha:1.000];
     btn.tintColor=[UIColor blackColor];
-    btn.titleLabel.font=[UIFont systemFontOfSize:13];
+//    btn.titleLabel.font=[UIFont systemFontOfSize:13];
     //btn 的 tag 和事件;
     btn.tag=100+section;
     [btn addTarget:self action:@selector(cellBtn:) forControlEvents:UIControlEventTouchUpInside];
+    
+    
+    NSString *titleStr=[NSString stringWithFormat:@"该企业还有其他%lu条岗位也在招聘",arr.count-1];
+    NSString *numStr=[NSString stringWithFormat:@"%lu条",arr.count-1];
+    NSMutableAttributedString *attribut=[[NSMutableAttributedString alloc]initWithString:titleStr];
+    NSDictionary *attributType=@{NSForegroundColorAttributeName:[UIColor redColor]};
+    NSRange range=[titleStr rangeOfString:numStr];
+    [attribut setAttributes:attributType range:range];
+    
+    UILabel *label=[[UILabel alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 35)];
+    label.attributedText=attribut;
+    label.font=[UIFont systemFontOfSize:14];
+    label.textAlignment=NSTextAlignmentCenter;
     [mainView addSubview:btn];
+    [mainView addSubview:label];
+    
     return mainView;
 }
 
@@ -264,9 +307,9 @@
     _quyuView=[[UIView alloc]initWithFrame:_myTableView.frame];
     _gangweiView=[[UIView alloc]initWithFrame:_myTableView.frame];
     _paixuView=[[UIView alloc]initWithFrame:_myTableView.frame];
-    _quyuView.backgroundColor=[UIColor colorWithRed:1.000 green:0.903 blue:0.859 alpha:1.000];
-    _gangweiView.backgroundColor=[UIColor colorWithRed:1.000 green:0.939 blue:0.857 alpha:1.000];
-    _paixuView.backgroundColor=[UIColor colorWithRed:0.742 green:0.833 blue:1.000 alpha:1.000];
+    _quyuView.backgroundColor=[UIColor colorWithRed:0.949 green:0.953 blue:1.000 alpha:1.000];
+    _gangweiView.backgroundColor=[UIColor colorWithRed:0.949 green:0.953 blue:1.000 alpha:1.000];
+    _paixuView.backgroundColor=[UIColor colorWithRed:0.949 green:0.953 blue:1.000 alpha:1.000];
     [self.view addSubview:_quyuView];
     [self.view addSubview:_gangweiView];
     [self.view addSubview:_paixuView];
@@ -389,7 +432,7 @@
     if (sender.tag==300) {
         gangweiStr=@"0";
     }else{
-        gangweiStr=[NSString stringWithFormat:@"%d",8430+sender.tag-300];
+        gangweiStr=[NSString stringWithFormat:@"%lu",8430+sender.tag-300];
     }
     
     [FindNetWork getFindWorkSuccess:^(FindWorkParse *parse) {
@@ -414,7 +457,7 @@
     sender.backgroundColor=[UIColor colorWithRed:0.949 green:0.953 blue:1.000 alpha:1.000];
     _paixuView.hidden=YES;
     
-    NSString *sort=[NSString stringWithFormat:@"%d",sender.tag-400+1];
+    NSString *sort=[NSString stringWithFormat:@"%lu",sender.tag-400+1];
     [FindNetWork getFindWorkSuccess:^(FindWorkParse *parse) {
         NSLog(@"paixun下载成功");
         _workParse=parse;
