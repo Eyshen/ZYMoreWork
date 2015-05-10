@@ -9,7 +9,8 @@
 #import "XiangQingViewController.h"
 #import "FindNetWork.h"
 #import "BaomingViewController.h"
-@interface XiangQingViewController ()<UITableViewDataSource,UITableViewDelegate,UIScrollViewDelegate,UIAlertViewDelegate>
+#import "UMSocial.h"
+@interface XiangQingViewController ()<UITableViewDataSource,UITableViewDelegate,UIScrollViewDelegate,UIAlertViewDelegate,UMSocialUIDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *myTableView;
 
@@ -47,10 +48,44 @@
     cell1=248;
     cell2=187;
     cell3=248;
+    
     [self constructBaomingBtn];
     
     [self addBackItem];
 }
+#pragma  分享
+- (IBAction)shareClick:(UIBarButtonItem *)sender {
+    [UMSocialConfig hiddenNotInstallPlatforms:@[UMShareToQQ,UMShareToQzone,UMShareToWechatTimeline,UMShareToWechatTimeline]];
+    
+    [UMSocialSnsService presentSnsIconSheetView:self
+                                         appKey:@"554dd22c67e58e10ee006b55"
+                                      shareText:[NSString stringWithFormat:@"%@http://blog.csdn.net/mreshen",_info.title]
+                                     shareImage:nil
+                                shareToSnsNames:[NSArray arrayWithObjects:UMShareToSina,UMShareToTencent,UMShareToRenren,UMShareToTencent,UMShareToWechatSession,UMShareToWechatTimeline,UMShareToQzone,UMShareToQQ,nil]
+                                       delegate:self];
+    
+    
+}
+
+#pragma mark---点击直接分享内容;
+//弹出列表方法presentSnsIconSheetView需要设置delegate为self
+-(BOOL)isDirectShareInIconActionSheet
+{
+    return YES;
+}
+//实现回调方法（可选）：
+-(void)didFinishGetUMSocialDataInViewController:(UMSocialResponseEntity *)response
+{
+    //根据`responseCode`得到发送结果,如果分享成功
+    if(response.responseCode == UMSResponseCodeSuccess)
+    {
+        //得到分享到的微博平台名
+        UIAlertView *av=[[UIAlertView alloc]initWithTitle:@"分享成功" message:[NSString stringWithFormat:@"share to sns name is %@",[[response.data allKeys] objectAtIndex:0]] delegate:self cancelButtonTitle:@"知道了" otherButtonTitles: nil];
+        [av show];
+    }
+}
+
+
 -(void)constructBaomingBtn
 {
     UIButton *baomingBtn=[UIButton buttonWithType:UIButtonTypeSystem];
@@ -87,6 +122,12 @@
         NSLog(@"报名");
         UIStoryboard *storyboard=[UIStoryboard storyboardWithName:@"Work" bundle:nil];
         BaomingViewController *baomingVC=[storyboard instantiateViewControllerWithIdentifier:@"BaomingViewController"];
+        
+        baomingVC.companyTitle=[NSString stringWithFormat:@"  %@",_info.title];
+        baomingVC.gongzi=[NSString stringWithFormat:@"  %@元/月",_info.gongzi1];
+        baomingVC.companyName=[NSString stringWithFormat:@"%@",_info.company];
+        baomingVC.update=_info.update_date;
+        NSLog(@"?????????");
         [self.navigationController pushViewController:baomingVC animated:YES];
     }else{
         NSLog(@"打电话");
@@ -97,7 +138,7 @@
 }
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    NSLog(@"buttonIndex%ld",buttonIndex);
+    NSLog(@"buttonIndex%u",buttonIndex);
     if (buttonIndex==1) {
         NSString *telStr=[NSString stringWithFormat:@"tel://%@",_info.mobile];
         NSLog(@"%@",telStr);

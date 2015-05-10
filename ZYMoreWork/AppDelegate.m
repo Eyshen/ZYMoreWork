@@ -8,6 +8,8 @@
 
 #import "AppDelegate.h"
 #import "MLBlackTransition.h"
+#import "UMSocial.h"
+#import "UMSocialWechatHandler.h"
 @interface AppDelegate ()
 
 @end
@@ -15,6 +17,12 @@
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    //友盟分享
+    [UMSocialData setAppKey:@"554dd22c67e58e10ee006b55"];
+    
+    //微信的集成
+    [UMSocialWechatHandler setWXAppId:@"wxc71c9cdcae5569bb" appSecret:@"96d92658c38830da2282b3bbdf33680c" url:@"http://www.umeng.com/social"];
+    
     
     /*****恢复右滑返回功能********/
     [MLBlackTransition validatePanPackWithMLBlackTransitionGestureRecognizerType:MLBlackTransitionGestureRecognizerTypeScreenEdgePan];
@@ -35,6 +43,28 @@
 {
     return [UIApplication sharedApplication].delegate;
 }
+
+- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url
+{
+    return  [UMSocialSnsService handleOpenURL:url];
+}
+- (BOOL)application:(UIApplication *)application
+            openURL:(NSURL *)url
+  sourceApplication:(NSString *)sourceApplication
+         annotation:(id)annotation
+{
+    return  [UMSocialSnsService handleOpenURL:url];
+}
+//若你除了使用我们SDK外，还用了其他SDK，需要重写此回调方法的，可以参考下面的写法
+//-(BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
+//{
+//    BOOL result = [UMSocialSnsService handleOpenURL:url];
+//    if (result == FALSE) {
+//        //调用其他SDK，例如新浪微博SDK等
+//    }
+//    return result;
+//}
+
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
     // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.

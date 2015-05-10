@@ -83,7 +83,14 @@
                             <constraint firstItem="9RY-ey-H3Y" firstAttribute="leading" secondItem="cQN-gS-UMc" secondAttribute="leading" id="nTa-lS-zMI"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="职位详情" id="P6T-UC-jwE"/>
+                    <navigationItem key="navigationItem" title="职位详情" id="P6T-UC-jwE">
+                        <barButtonItem key="rightBarButtonItem" title="分享" id="Xlv-gB-8uh">
+                            <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            <connections>
+                                <action selector="shareClick:" destination="2rW-ha-XL5" id="mok-O8-6Md"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <connections>
                         <outlet property="CompanyWeb" destination="HXL-Ud-mMU" id="5tn-LU-RZY"/>

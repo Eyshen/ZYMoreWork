@@ -9,5 +9,8 @@
 #import "BaseViewController.h"
 
 @interface BaomingViewController : BaseViewController
-
+@property (nonatomic,strong)NSString *companyName;
+@property (nonatomic,strong)NSString *companyTitle;
+@property (nonatomic,strong)NSString *gongzi;
+@property (nonatomic,strong)NSString *update;
 @end

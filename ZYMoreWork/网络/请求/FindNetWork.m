@@ -37,6 +37,7 @@
 }
 
 
+#pragma mark--暂时不用(工团)
 +(void)getFindGongTuanSuccess:(void (^)(GongTuanParse *))success failure:(void (^)(NSString *))failure
 {
     //wapi.chinalao.com/tuan/index?cityid=0
@@ -52,7 +53,7 @@
     }];
 }
 
-
+#pragma mark---暂时不用()
 +(void)getFIndMendianSuccess:(void(^)(MendianParse *parse))success failure:(void(^)(NSString *errorMessage))failure
 {
     AFHTTPRequestOperationManager *manager=[AFHTTPRequestOperationManager manager];
@@ -79,6 +80,19 @@
     urlStr=[urlStr stringByAppendingString:pageSize];
     [manager GET:urlStr parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
         success([IosjobParse parse:responseObject]);
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        failure(error.localizedDescription);
+    }];
+}
++(void)getNewsSuccess:(void (^)(ZiXunParse *))success failure:(void (^)(NSString *))failure urlStr:(NSString *)urlStr
+{
+    AFHTTPRequestOperationManager *manager=[AFHTTPRequestOperationManager manager];
+    manager.responseSerializer.acceptableContentTypes=[NSSet setWithObject:@"application/json"];
+    //mi.zhaopin.com/iPhone/info/Infolist?d=45389FE5E07070A195009971B5A2544D&pageSize=20&key=135486907262855&channel=apple&pageIndex=1&v=4.1&t=1431240605&e=646ec20311898ccbf34d7cee524c54d9
+    //mi.zhaopin.com/iPhone/info/Infolist?d=45389FE5E07070A195009971B5A2544D&pageSize=20&key=135486907262855&channel=apple&pageIndex=2&v=4.1&t=1431244455&e=8d0bf296f97cd7e783101d0cd16f6481
+    [manager GET:urlStr parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        
+        success([ZiXunParse parse:responseObject]);
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         failure(error.localizedDescription);
     }];

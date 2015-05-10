@@ -35,7 +35,7 @@
     //找门店
     UINavigationController *mendianNavi=[[UIStoryboard storyboardWithName:@"Mendian" bundle:nil]instantiateInitialViewController];
     
-    mendianNavi.tabBarItem=[self tabBarItemWithName:@"找门店" imageName:@"找门店-灰" selectedImageName:@"找门店-红"];
+    mendianNavi.tabBarItem=[self tabBarItemWithName:@"资讯" imageName:@"找门店-灰" selectedImageName:@"找门店-红"];
     //设置
     
     UINavigationController *setNavi=[[UIStoryboard storyboardWithName:@"Set" bundle:nil]instantiateInitialViewController];

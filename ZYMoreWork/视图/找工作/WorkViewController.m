@@ -15,6 +15,7 @@
 @property (weak, nonatomic) IBOutlet UITableView *myTableView;
 @property (weak, nonatomic) IBOutlet UIButton *quyuBtn;
 
+
 @end
 
 @implementation WorkViewController
@@ -86,7 +87,9 @@
 //        NSLog(@"走几次");
     }else if([segue.identifier isEqualToString:@"BaomingViewController"]){
         BaomingViewController *baomingVC=segue.destinationViewController;
-        
+        UIButton *btn=(UIButton *)sender;
+        NSLog(@"--------%ld",btn.tag);
+        baomingVC.companyName=_workParse.companyName[btn.tag-1000];
     }
 }
 
@@ -270,7 +273,10 @@
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
-    UITableViewCell *cell=[tableView dequeueReusableCellWithIdentifier:@"normalCell"forIndexPath:indexPath];
+    UITableViewCell *cell=[tableView dequeueReusableCellWithIdentifier:@"normalCell"];
+    if (!cell) {
+        cell=[[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"normalCell"];
+    }
     [self updateTableViewCell:cell andIndexPath:indexPath];
     return cell;
 }
@@ -290,10 +296,13 @@
     titleLabel.text=[NSString stringWithFormat:@" %@",info.title];
     citynameLabel.text=[NSString stringWithFormat:@"%@-%@",info.thirdname,info.cityname];
     gongziLabel.text=[NSString stringWithFormat:@"  ¥%@-%@",info.gongzi1,info.gongzi2];
+    
+    baomingBtn.tag=1000+indexPath.section;
     baomingBtn.layer.masksToBounds=YES;
     baomingBtn.layer.cornerRadius=15;
     baomingBtn.layer.borderWidth=1;
     baomingBtn.layer.borderColor=[[UIColor grayColor]CGColor];
+    
     sexageLabel.text=[NSString stringWithFormat:@" %@ %@-%@岁",info.sex,info.age1,info.age2];
 }
 - (void)didReceiveMemoryWarning {

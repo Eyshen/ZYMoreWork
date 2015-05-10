@@ -13,6 +13,7 @@
 #import "MendianParse.h"
 #import "IosjobParse.h"
 #import "XiangQIngParse.h"
+#import "ZiXunParse.h"
 @interface FindNetWork : NSObject
 
 //获取第一页数据请求
@@ -27,6 +28,9 @@
 
 //第二页请求;
 +(void)getIosjobSuccess:(void (^)(IosjobParse *parse))success failure:(void (^)(NSString *errorMessage))failure pageSize:(NSString *)pageSize;
+
++(void)getNewsSuccess:(void (^)(ZiXunParse *parse))success failure:(void (^)(NSString *errorMessage))failure urlStr:(NSString *)urlStr;
+
 
 
 
