@@ -12,10 +12,11 @@
 #import <MDCSwipeToChoose/MDCSwipeDirection.h>
 #import "CompanyViewController.h"
 
+#import "MBProgressHUD.h"
 static const CGFloat ChoosePersonButtonHorizontalPadding=80.f;
 static const CGFloat ChoosePersonButtonVerticalPadding=20.f;
 
-@interface ITViewController ()
+@interface ITViewController ()<MBProgressHUDDelegate>
 @property(nonatomic,strong)NSMutableArray *people;
 @property(nonatomic,strong)NSMutableArray *jobArr;
 @end
@@ -24,6 +25,8 @@ static const CGFloat ChoosePersonButtonVerticalPadding=20.f;
 {
     IosjobParse *_parse;
     NSInteger _page;
+    //HUD（Head-Up Display，意思是抬头显示的意思）
+    MBProgressHUD *HUD;
 }
 
 #pragma mark----UIViewController Overrides(重写)
@@ -33,15 +36,28 @@ static const CGFloat ChoosePersonButtonVerticalPadding=20.f;
 //    _people =[[self defaultPeople] mutableCopy];
     
     // Do any additional setup after loading the view.
+    HUD = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
+    [self.view addSubview:HUD];
+    
+    // Set determinate mode
+    HUD.mode = MBProgressHUDModeAnnularDeterminate;
+    
+    HUD.delegate = self;
+    HUD.labelText = @"Loading";
+    
+    
     _page=2;
+    [HUD show:YES];
     [FindNetWork getIosjobSuccess:^(IosjobParse *parse) {
         _parse=parse;
-        NSLog(@"it下载成功%lu",[_parse.data count]);
-        
+        NSLog(@"it下载成功%lu",(unsigned long)[_parse.data count]);
+        [HUD removeFromSuperview];
         [self creatCarViewAndButton];
     } failure:^(NSString *errorMessage) {
         NSLog(@"失败%@",errorMessage);
+        [HUD removeFromSuperview];
     } pageSize:@"1"];
+    
     
     
 }
@@ -158,15 +174,22 @@ static const CGFloat ChoosePersonButtonVerticalPadding=20.f;
         
         [FindNetWork getIosjobSuccess:^(IosjobParse *parse) {
             _parse=parse;
-            NSLog(@"it下载成功%lu",[_parse.data count]);
+            NSLog(@"it下载成功%lu",(unsigned long)[_parse.data count]);
             
             [self creatCarViewAndButton];
         } failure:^(NSString *errorMessage) {
             NSLog(@"失败%@",errorMessage);
-        } pageSize:[NSString stringWithFormat:@"%ld",_page]];
+        } pageSize:[NSString stringWithFormat:@"%ld",(long)_page]];
         _page++;
         return nil;
     }
+    
+
+    
+    
+    
+    
+    
     // UIView+MDCSwipeToChoose and MDCSwipeToChooseView是高度可自定的
     // Each take an "options" argument. Here, we specify the view controller as
     // a delegate, and provide a custom callback that moves the back card view

@@ -9,7 +9,9 @@
 #import "WorkViewController.h"
 #import "XiangQingViewController.h"
 #import "BaomingViewController.h"
-@interface WorkViewController ()<UITableViewDataSource,UITableViewDelegate,UIScrollViewDelegate>
+#import "MJRefresh.h"
+
+@interface WorkViewController ()<UITableViewDataSource,UITableViewDelegate,UIScrollViewDelegate,UIAlertViewDelegate,UIGestureRecognizerDelegate>
 @property (weak, nonatomic) IBOutlet UITextField *searchWork;
 @property (weak, nonatomic) IBOutlet UIView *lineView;
 @property (weak, nonatomic) IBOutlet UITableView *myTableView;
@@ -23,6 +25,7 @@
     UIButton *_currentBtn;
     NSMutableArray *_isOpen;
     FindWorkParse *_workParse;
+    
     NSArray *_thirdidArr;
     UIView *_quyuView;
     UIView *_gangweiView;
@@ -31,19 +34,97 @@
     
     NSString *_quyuStr;
     NSString *_kindStr;
+    
+    float _screenWidth;
+    float _screenHeight;
+    
+    NSInteger _searchOpen;
+    NSMutableArray *_searchWorkData;
+    NSMutableArray *_searchCompanyNameData;
+    
+    NSInteger _page;
+    
+    
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
+    _page=2;
     // Do any additional setup after loading the view.
     //设置 每个 分区的开关;
+    _searchWorkData=[NSMutableArray new];
+    _searchCompanyNameData=[NSMutableArray new];
+    _searchOpen=0;
+    
+    _screenWidth=self.view.frame.size.width;
+    _screenHeight=self.view.frame.size.height;
     _isOpen=[NSMutableArray new];
     _thirdidArr=[NSArray array];
     _diquArr=[NSArray new];
     _quyuStr=[NSString new];
     _kindStr=[NSString new];
+    
     _quyuStr=@"0";
     _kindStr=@"0";
   _thirdidArr=@[@"0",@"4227",@"4253",@"4276",@"4298",@"4311",@"4334",@"4357",@"4378"];
+    
+//    [FindNetWork getFindWorkSuccess:^(FindWorkParse *parse) {
+//        _workParse=parse;
+//        NSLog(@"下载成功");
+//        for (int i=0; i<_workParse.listData.count; i++) {
+//            [_isOpen addObject:[NSNumber numberWithBool:NO]];
+//        }
+//        [_myTableView reloadData];
+//    } failure:^(NSString *errorMessage) {
+//        NSLog(@"下载失败");
+//    }withIDStr:@"0" withGangID:@"0" withSort:@"0"];
+    
+    
+#pragma mark---下拉刷新
+    [self.myTableView addGifHeaderWithRefreshingTarget:self refreshingAction:@selector(loadNewData)];
+    // 设置普通状态的动画图片
+    NSMutableArray *idleImages = [NSMutableArray array];
+    for (NSUInteger i = 1; i<=60; i++) {
+        UIImage *image = [UIImage imageNamed:[NSString stringWithFormat:@"dropdown_anim__000%zd", i]];
+        [idleImages addObject:image];
+    }
+    [self.myTableView.gifHeader setImages:idleImages forState:MJRefreshHeaderStateIdle];
+    
+    // 设置即将刷新状态的动画图片（一松开就会刷新的状态）
+    NSMutableArray *refreshingImages = [NSMutableArray array];
+    for (NSUInteger i = 1; i<=3; i++) {
+        UIImage *image = [UIImage imageNamed:[NSString stringWithFormat:@"dropdown_loading_0%zd", i]];
+        [refreshingImages addObject:image];
+    }
+    [self.myTableView.gifHeader setImages:refreshingImages forState:MJRefreshHeaderStatePulling];
+    
+    // 设置正在刷新状态的动画图片
+    [self.myTableView.gifHeader setImages:refreshingImages forState:MJRefreshHeaderStateRefreshing];
+    // 在这个例子中，即将刷新 和 正在刷新 用的是一样的动画图片
+    
+    // 马上进入刷新状态
+    [self.myTableView.gifHeader beginRefreshing];
+    
+    // 此时self.tableView.header == self.tableView.gifHeader
+    
+#pragma mark--上拉加载
+    // 添加动画图片的上拉刷新
+    // 设置回调（一旦进入刷新状态，就调用target的action，也就是调用self的loadMoreData方法）
+    [self.myTableView addGifFooterWithRefreshingTarget:self refreshingAction:@selector(loadMoreData)];
+    
+    // 设置正在刷新状态的动画图片
+    for (NSUInteger i = 1; i<=3; i++) {
+        UIImage *image = [UIImage imageNamed:[NSString stringWithFormat:@"dropdown_loading_0%zd", i]];
+        [refreshingImages addObject:image];
+    }
+    self.myTableView.gifFooter.refreshingImages = refreshingImages;
+    
+    // 此时self.tableView.footer == self.tableView.gifFooter
+}
+
+-(void)loadNewData
+{
+    [UIApplication sharedApplication].networkActivityIndicatorVisible=YES;
+    _page=2;
     [FindNetWork getFindWorkSuccess:^(FindWorkParse *parse) {
         _workParse=parse;
         NSLog(@"下载成功");
@@ -51,11 +132,40 @@
             [_isOpen addObject:[NSNumber numberWithBool:NO]];
         }
         [_myTableView reloadData];
+        [UIApplication sharedApplication].networkActivityIndicatorVisible=NO;
+        [self.myTableView.header endRefreshing];
     } failure:^(NSString *errorMessage) {
         NSLog(@"下载失败");
-    }withIDStr:@"0" withGangID:@"0" withSort:@"0"];
+        [UIApplication sharedApplication].networkActivityIndicatorVisible=NO;
+        [self.myTableView.header endRefreshing];
+    }withIDStr:@"0" withGangID:@"0" withSort:@"0" page:@"1"];
     
 }
+-(void)loadMoreData
+{
+    [UIApplication sharedApplication].networkActivityIndicatorVisible=YES;
+
+    NSString *pageStr=[NSString stringWithFormat:@"%ld",(long)_page];
+    [FindNetWork getFindWorkSuccess:^(FindWorkParse *parse) {
+        
+        [_workParse.listData addObjectsFromArray: parse.listData];
+        [_workParse.companyName addObjectsFromArray:parse.companyName];
+        NSLog(@"下载成功");
+        for (int i=0; i<_workParse.listData.count; i++) {
+            [_isOpen addObject:[NSNumber numberWithBool:NO]];
+        }
+        [UIApplication sharedApplication].networkActivityIndicatorVisible=NO;
+        [_myTableView reloadData];
+        [self.myTableView.footer endRefreshing];
+    } failure:^(NSString *errorMessage) {
+        NSLog(@"下载失败");
+        [UIApplication sharedApplication].networkActivityIndicatorVisible=NO;
+    }withIDStr:@"0" withGangID:@"0" withSort:@"0" page:pageStr];
+    _page++;
+}
+
+
+
 -(void)viewDidLayoutSubviews
 {
     if(!_quyuView)
@@ -64,9 +174,107 @@
     }
     
 }
-//搜索按钮事件
+
+/*
+#pragma mark---城市按钮
+- (IBAction)cityBtnClick:(UIButton *)sender {
+    NSLog(@"aaaa");
+    
+    if (self.tabBarController.view.frame.origin.x == 0) {
+        [UIView animateWithDuration:0.5 animations:^{
+            self.tabBarController.view.frame = CGRectMake(_screenWidth/2, 0, _screenWidth, _screenHeight);
+            //点击手势
+            UITapGestureRecognizer *tapGR=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapGR:)];
+//            tapGR.delegate=self;
+            [self.tabBarController.view addGestureRecognizer:tapGR];
+            //清扫手势
+            UISwipeGestureRecognizer *swipeGR=[[UISwipeGestureRecognizer alloc]initWithTarget:self action:@selector(swipeGR:)];
+            [self.tabBarController.view addGestureRecognizer:swipeGR];
+            //设置清扫方向
+//            swipeGR.delegate=self;
+            swipeGR.direction=UISwipeGestureRecognizerDirectionLeft;
+            [self.tabBarController.view addGestureRecognizer:swipeGR];
+            
+            
+        } completion:^(BOOL finished) {
+        }];
+        
+    }else{
+        [UIView animateWithDuration:0.5 animations:^{
+            self.tabBarController.view.frame = CGRectMake(0, 0, _screenWidth, _screenHeight);
+        } completion:^(BOOL finished) {
+            
+        }];
+    }
+    
+}
+
+-(void)tapGR:(UITapGestureRecognizer *)tapGR
+{
+    if (tapGR.view.frame.origin.x!=0) {
+        [UIView animateWithDuration:0.5 animations:^{
+            self.tabBarController.view.frame = CGRectMake(0, 0, _screenWidth, _screenHeight);
+        } completion:^(BOOL finished) {
+        }];
+        [self.tabBarController.view removeGestureRecognizer:tapGR];
+    }
+    
+}
+-(void)swipeGR:(UISwipeGestureRecognizer *)swipeGR
+{
+    if (swipeGR.direction==UISwipeGestureRecognizerDirectionLeft) {
+        if (swipeGR.view.frame.origin.x!=0) {
+            [UIView animateWithDuration:0.5 animations:^{
+                self.tabBarController.view.frame = CGRectMake(0, 0, _screenWidth, _screenHeight);
+            } completion:^(BOOL finished) {
+            }];
+            
+            [self.tabBarController.view removeGestureRecognizer:swipeGR];
+        }
+    }
+}
+ 
+ */
+#pragma mark---提示
+-(void)setAlterView
+{
+    UIAlertView *av=[[UIAlertView alloc]initWithTitle:@"城市信息" message:@"对不起,目前还没有开通这个城市的信息" delegate: self cancelButtonTitle:@"知道了" otherButtonTitles: nil];
+    
+    [av show];
+}
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex==0) {
+        UIButton *btn=(UIButton *)[self.view viewWithTag:77];
+        [btn setTitle:@"青岛" forState: UIControlStateNormal];
+    }
+}
+
+#pragma mark--搜索按钮事件
 - (IBAction)searchBtnClick:(UIButton *)sender {
     [_searchWork resignFirstResponder];
+    if (_searchWork.text.length==0) {
+        NSLog(@"搜索");
+        
+        _searchOpen=0;
+        [_myTableView reloadData];
+    }else{
+        NSLog(@"%@",_searchWork.text);
+        [_searchCompanyNameData removeAllObjects];
+        [_searchWorkData removeAllObjects];
+        for (int i=0; i<_workParse.companyName.count; i++) {
+            
+            if ([_workParse.companyName[i] rangeOfString:_searchWork.text].length!=0) {
+                NSLog(@"%@",_workParse.companyName[i]);
+//                NSLog(@"长度%u",[_workParse.companyName[i] rangeOfString:_searchWork.text].length);
+                [_searchWorkData addObject:_workParse.listData[i]];
+                [_searchCompanyNameData addObject:_workParse.companyName[i]];
+            }
+        }
+        _searchOpen=1;
+        [_myTableView reloadData];
+    }
+    
 }
 //收起键盘
 -(void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
@@ -81,15 +289,27 @@
     if ([segue.identifier isEqualToString:@"XiangQingViewController"]) {
         XiangQingViewController *xiangqingVC=segue.destinationViewController;
         NSIndexPath *indexPath=[_myTableView indexPathForCell:sender];
-        NSArray *arr=_workParse.listData[indexPath.section];
+        
+        NSArray *arr=[NSArray new];
+        if (_searchOpen==1) {
+            arr=_searchWorkData[indexPath.section];
+        }else{
+            arr=_workParse.listData[indexPath.section];
+        }
         FindWorkInfo *info=arr[indexPath.row];
         xiangqingVC.zhaopinid=info.myid;
 //        NSLog(@"走几次");
+        
     }else if([segue.identifier isEqualToString:@"BaomingViewController"]){
         BaomingViewController *baomingVC=segue.destinationViewController;
         UIButton *btn=(UIButton *)sender;
-        NSLog(@"--------%ld",btn.tag);
-        baomingVC.companyName=_workParse.companyName[btn.tag-1000];
+//        NSLog(@"--------%u",btn.tag);
+        if (_searchOpen==1) {
+            baomingVC.companyName=_searchCompanyNameData[btn.tag-1000];
+        }else{
+            baomingVC.companyName=_workParse.companyName[btn.tag-1000];
+        }
+        
     }
 }
 
@@ -162,6 +382,10 @@
 #pragma mark---tableViewDelegate,tableViewDataSource
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
+    
+    if (_searchOpen==1) {
+        return _searchWorkData.count;
+    }
     return _workParse.listData.count;
 }
 //section 的
@@ -170,24 +394,39 @@
     if (![[_isOpen objectAtIndex:section]boolValue]) {
         return 1;
     }
+    if (_searchOpen==1) {
+        NSArray *arr=_searchWorkData[section];
+//        NSLog(@"搜索的每个分区多少行%u",arr.count);
+        return arr.count;
+    }
+    
     NSArray *arr=_workParse.listData[section];
-    NSLog(@"每个分区多少行%lu",arr.count);
+//    NSLog(@"每个分区多少行%u",arr.count);
     return arr.count;
 }
 //每个cell的高度
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    
     return 80;
 }
 
 //设置头部高度
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    
     return 35;
 }
 //设置脚部高度
 -(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
-    NSArray *arr=_workParse.listData[section];
+    
+    NSArray *arr=[NSArray new];
+    if (_searchOpen==1) {
+        arr=_searchWorkData[section];
+        
+    }else{
+        arr=_workParse.listData[section];
+    }
     if (arr.count==1) {
         return 5;
     }
@@ -197,7 +436,12 @@
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
     UILabel *label=[[UILabel alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 35)];
-    label.text=_workParse.companyName[section];
+    if (_searchOpen==1) {
+        label.text=_searchCompanyNameData[section];
+    }else{
+        label.text=_workParse.companyName[section];
+    }
+    
     label.backgroundColor=[UIColor whiteColor];
     label.textColor=[UIColor blackColor];
     label.font=[UIFont boldSystemFontOfSize:17];
@@ -206,7 +450,16 @@
 //设置 foot 上的按钮
 -(UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
 {
-    NSArray *arr=_workParse.listData[section];
+    
+    
+    
+    NSArray *arr=[NSArray new];
+    if (_searchOpen==1) {
+        arr=_searchWorkData[section];
+    }else{
+        arr=_workParse.listData[section];
+    }
+    
     UIView *mainView=[[UIView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 40)];
     mainView.backgroundColor=[UIColor colorWithRed:0.922 green:0.922 blue:0.945 alpha:1.000];
     UIView *footView=[[UIView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 5)];
@@ -243,8 +496,8 @@
     [btn addTarget:self action:@selector(cellBtn:) forControlEvents:UIControlEventTouchUpInside];
     
     
-    NSString *titleStr=[NSString stringWithFormat:@"该企业还有其他%lu条岗位也在招聘",arr.count-1];
-    NSString *numStr=[NSString stringWithFormat:@"%lu条",arr.count-1];
+    NSString *titleStr=[NSString stringWithFormat:@"该企业还有其他%u条岗位也在招聘",arr.count-1];
+    NSString *numStr=[NSString stringWithFormat:@"%u条",arr.count-1];
     NSMutableAttributedString *attribut=[[NSMutableAttributedString alloc]initWithString:titleStr];
     NSDictionary *attributType=@{NSForegroundColorAttributeName:[UIColor redColor]};
     NSRange range=[titleStr rangeOfString:numStr];
@@ -265,6 +518,7 @@
     [sender setTitle:@"向上收起" forState:UIControlStateNormal];
     BOOL now=[[_isOpen objectAtIndex:sender.tag-100] boolValue];
     [_isOpen replaceObjectAtIndex:sender.tag-100 withObject:[NSNumber numberWithBool:!now]];
+    
     //重载某个分段, NSIndexSet 数字结合,理解成专门存放数字的数组;
     [_myTableView reloadSections:[NSIndexSet indexSetWithIndex:sender.tag-100] withRowAnimation:UITableViewRowAnimationFade];
 }
@@ -289,7 +543,13 @@
     UILabel *gongziLabel=(UILabel *)[cell.contentView viewWithTag:23];
     UIButton *baomingBtn=(UIButton *)[cell.contentView viewWithTag:25];
     UILabel *sexageLabel=(UILabel *)[cell.contentView viewWithTag:24];
-    NSArray *arr=_workParse.listData[indexPath.section];
+    NSArray *arr=[NSArray new];
+    if (_searchOpen==1) {
+        arr=_searchWorkData[indexPath.section];
+    }else{
+        arr=_workParse.listData[indexPath.section];
+    }
+    
     FindWorkInfo *info=arr[indexPath.row];
     
     [logoIV setImageWithURL:[NSURL URLWithString:info.logo]];
@@ -305,6 +565,7 @@
     
     sexageLabel.text=[NSString stringWithFormat:@" %@ %@-%@岁",info.sex,info.age1,info.age2];
 }
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -407,17 +668,19 @@
     }
     sender.backgroundColor=[UIColor colorWithRed:0.949 green:0.953 blue:1.000 alpha:1.000];
     
-    
+    [UIApplication sharedApplication].networkActivityIndicatorVisible=YES;
     [FindNetWork getFindWorkSuccess:^(FindWorkParse *parse) {
         _workParse=parse;
         NSLog(@"下载成功");
         for (int i=0; i<_workParse.listData.count; i++) {
             [_isOpen addObject:[NSNumber numberWithBool:NO]];
         }
+        [UIApplication sharedApplication].networkActivityIndicatorVisible=NO;
         [_myTableView reloadData];
     } failure:^(NSString *errorMessage) {
         NSLog(@"下载失败");
-    }withIDStr:_thirdidArr[sender.tag-200] withGangID:@"0" withSort:@"0"];
+        [UIApplication sharedApplication].networkActivityIndicatorVisible=NO;
+    }withIDStr:_thirdidArr[sender.tag-200] withGangID:@"0" withSort:@"0" page:@"1"];
     _quyuStr=_thirdidArr[sender.tag-200];
     
     if (sender.tag==200) {
@@ -441,19 +704,21 @@
     if (sender.tag==300) {
         gangweiStr=@"0";
     }else{
-        gangweiStr=[NSString stringWithFormat:@"%lu",8430+sender.tag-300];
+        gangweiStr=[NSString stringWithFormat:@"%u",8430+sender.tag-300];
     }
-    
+    [UIApplication sharedApplication].networkActivityIndicatorVisible=YES;
     [FindNetWork getFindWorkSuccess:^(FindWorkParse *parse) {
         NSLog(@"gang下载成功");
         _workParse=parse;
         for (int i=0; i<_workParse.listData.count; i++) {
             [_isOpen addObject:[NSNumber numberWithBool:NO]];
         }
+        [UIApplication sharedApplication].networkActivityIndicatorVisible=NO;
         [_myTableView reloadData];
     } failure:^(NSString *errorMessage) {
         NSLog(@"下载失败%@",errorMessage);
-    } withIDStr:_quyuStr withGangID:gangweiStr withSort:@"0"];
+        [UIApplication sharedApplication].networkActivityIndicatorVisible=NO;
+    } withIDStr:_quyuStr withGangID:gangweiStr withSort:@"0" page:@"1"];
     _kindStr=gangweiStr;
     NSLog(@"地区%@",gangweiStr);
 }
@@ -466,7 +731,8 @@
     sender.backgroundColor=[UIColor colorWithRed:0.949 green:0.953 blue:1.000 alpha:1.000];
     _paixuView.hidden=YES;
     
-    NSString *sort=[NSString stringWithFormat:@"%lu",sender.tag-400+1];
+    [UIApplication sharedApplication].networkActivityIndicatorVisible=YES;
+    NSString *sort=[NSString stringWithFormat:@"%d",sender.tag-400+1];
     [FindNetWork getFindWorkSuccess:^(FindWorkParse *parse) {
         NSLog(@"paixun下载成功");
         _workParse=parse;
@@ -474,11 +740,16 @@
             [_isOpen addObject:[NSNumber numberWithBool:NO]];
         }
         [_myTableView reloadData];
+        [UIApplication sharedApplication].networkActivityIndicatorVisible=NO;
     } failure:^(NSString *errorMessage) {
         NSLog(@"下载失败%@",errorMessage);
-    } withIDStr:_quyuStr withGangID:_kindStr withSort:sort];
+        [UIApplication sharedApplication].networkActivityIndicatorVisible=NO;
+    } withIDStr:_quyuStr withGangID:_kindStr withSort:sort page:@"1"];
     
 }
+
+
+
 /*
 #pragma mark - Navigation
 

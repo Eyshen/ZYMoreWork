@@ -14,6 +14,7 @@
 
 @property (weak, nonatomic) IBOutlet UITableView *myTableView;
 
+
 @end
 
 @implementation XiangQingViewController
@@ -29,6 +30,10 @@
     NSTimer *_timer;
     UIScrollView *_scroll;
     UIPageControl *_pageView;
+    
+    
+    UIView *_downViewa;
+    UIView *_downViewb;
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -61,7 +66,7 @@
                                          appKey:@"554dd22c67e58e10ee006b55"
                                       shareText:[NSString stringWithFormat:@"%@http://blog.csdn.net/mreshen",_info.title]
                                      shareImage:nil
-                                shareToSnsNames:[NSArray arrayWithObjects:UMShareToSina,UMShareToTencent,UMShareToRenren,UMShareToTencent,UMShareToWechatSession,UMShareToWechatTimeline,UMShareToQzone,UMShareToQQ,nil]
+                                shareToSnsNames:[NSArray arrayWithObjects:UMShareToSina,UMShareToRenren,UMShareToTencent,UMShareToWechatSession,UMShareToWechatTimeline,UMShareToQzone,UMShareToQQ,nil]
                                        delegate:self];
     
     
@@ -229,13 +234,30 @@
         UIButton *gangBtn=(UIButton *)[cell.contentView viewWithTag:30];
         UIButton *qiyeBtn=(UIButton *)[cell.contentView viewWithTag:31];
         _lineView=[cell.contentView viewWithTag:32];
-        UIView *downView=[cell.contentView viewWithTag:33];
+        _downViewa=[cell.contentView viewWithTag:33];
+        _downViewb=[cell.contentView viewWithTag:37];
+        
         [gangBtn addTarget:self action:@selector(gangBtnClick:) forControlEvents:UIControlEventTouchUpInside];
         [qiyeBtn addTarget:self action:@selector(qiyeBtnClick:) forControlEvents:UIControlEventTouchUpInside];
         
         
+        UILabel *label=[[UILabel alloc]initWithFrame:CGRectMake(0, 0, _downViewa.frame.size.width, _downViewa.frame.size.height)];
+        label.text=_parse.content;
+        label.font=[UIFont systemFontOfSize:13];
+        label.numberOfLines=0;
+        [_downViewa addSubview: label];
+        
+        UILabel *labelb=[[UILabel alloc]initWithFrame:CGRectMake(0, 0, _downViewa.frame.size.width, _downViewa.frame.size.height)];
+        labelb.text=[NSString stringWithFormat:@"  %@",_info.title];
+        labelb.font=[UIFont systemFontOfSize:15];
+        labelb.numberOfLines=0;
+        [_downViewb addSubview: labelb];
         return cell;
     }
+}
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 #pragma mark----scrollviewDelegate
 //滑动结束

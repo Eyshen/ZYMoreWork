@@ -264,17 +264,6 @@
                     </view>
                     <navigationItem key="navigationItem" id="vG0-gz-Afd">
                         <nil key="title"/>
-                        <barButtonItem key="leftBarButtonItem" style="plain" id="vxt-ki-QqE">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="CAL-vp-g5H">
-                                <rect key="frame" x="16" y="7" width="40" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="15"/>
-                                <state key="normal" title="青岛">
-                                    <color key="titleColor" red="1" green="0.99476516062993614" blue="0.9767415699641564" alpha="1" colorSpace="calibratedRGB"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                            </button>
-                        </barButtonItem>
                         <textField key="titleView" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="请输入岗位或者企业" minimumFontSize="17" id="vQE-4u-PlK">
                             <rect key="frame" x="200" y="7" width="200" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -289,7 +278,7 @@
                                 </userDefinedRuntimeAttribute>
                             </userDefinedRuntimeAttributes>
                         </textField>
-                        <barButtonItem key="rightBarButtonItem" style="plain" id="SzV-N6-Tcm">
+                        <barButtonItem key="rightBarButtonItem" id="SzV-N6-Tcm">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="678-AB-51J">
                                 <rect key="frame" x="567" y="8" width="17" height="17"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -749,6 +738,10 @@
                                                         <constraint firstAttribute="height" constant="2" id="uYc-mw-0Cg"/>
                                                     </constraints>
                                                 </view>
+                                                <view tag="37" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Urw-Wn-XIt">
+                                                    <rect key="frame" x="0.0" y="50" width="600" height="198"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </view>
                                                 <view tag="33" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kIh-Oh-xcd">
                                                     <rect key="frame" x="0.0" y="50" width="600" height="198"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -767,13 +760,17 @@
                                                 </button>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstItem="Urw-Wn-XIt" firstAttribute="leading" secondItem="Zzz-lG-AxV" secondAttribute="leading" id="0aH-31-8d6"/>
                                                 <constraint firstItem="kIh-Oh-xcd" firstAttribute="leading" secondItem="Zzz-lG-AxV" secondAttribute="leading" id="1fu-U7-eSY"/>
+                                                <constraint firstItem="Urw-Wn-XIt" firstAttribute="top" secondItem="mS9-SA-ylH" secondAttribute="bottom" id="5O7-Jd-vpV"/>
                                                 <constraint firstAttribute="bottom" secondItem="kIh-Oh-xcd" secondAttribute="bottom" id="7Z4-0N-Usq"/>
                                                 <constraint firstItem="mS9-SA-ylH" firstAttribute="width" secondItem="lB8-K3-zWD" secondAttribute="width" id="A8c-dv-JkL"/>
+                                                <constraint firstAttribute="trailing" secondItem="Urw-Wn-XIt" secondAttribute="trailing" id="Kj1-8f-uQJ"/>
                                                 <constraint firstItem="Kd4-cb-JVd" firstAttribute="leading" secondItem="Zzz-lG-AxV" secondAttribute="leading" id="L4s-6z-dcB"/>
                                                 <constraint firstAttribute="trailing" secondItem="lB8-K3-zWD" secondAttribute="trailing" id="N0r-yn-q4r"/>
                                                 <constraint firstItem="mS9-SA-ylH" firstAttribute="width" secondItem="Kd4-cb-JVd" secondAttribute="width" id="Q7C-44-s0m"/>
                                                 <constraint firstItem="mS9-SA-ylH" firstAttribute="leading" secondItem="Zzz-lG-AxV" secondAttribute="leading" id="Sdi-h0-a5z"/>
+                                                <constraint firstAttribute="bottom" secondItem="Urw-Wn-XIt" secondAttribute="bottom" id="Y2S-LM-dxZ"/>
                                                 <constraint firstItem="lB8-K3-zWD" firstAttribute="top" secondItem="Zzz-lG-AxV" secondAttribute="top" id="dl6-0N-IOO"/>
                                                 <constraint firstItem="kIh-Oh-xcd" firstAttribute="top" secondItem="Kd4-cb-JVd" secondAttribute="bottom" id="lgE-gE-xk6"/>
                                                 <constraint firstItem="Kd4-cb-JVd" firstAttribute="top" secondItem="Zzz-lG-AxV" secondAttribute="top" constant="48" id="oht-e4-TvG"/>

@@ -8,6 +8,7 @@
 
 #import "NewsViewController.h"
 #import "UMSocial.h"
+#import "MBProgressHUD.h"
 @interface NewsViewController ()<UIWebViewDelegate,UMSocialUIDelegate>
 @property (weak, nonatomic) IBOutlet UIWebView *newsWebView;
 
@@ -16,6 +17,8 @@
 @implementation NewsViewController
 {
     NSString *_urlStr;
+    //HUD（Head-Up Display，意思是抬头显示的意思）
+    MBProgressHUD *HUD;
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -24,8 +27,22 @@
     _urlStr=[NSString stringWithFormat:@"http://mi.zhaopin.com/iphone/info/infodetail?Id=%@",self.myID];
     NSURL *url=[NSURL URLWithString:_urlStr];
     NSURLRequest *request=[NSURLRequest requestWithURL:url];
+    _newsWebView.delegate=self;
     [_newsWebView loadRequest:request];
     [self addBackItem];
+    
+    
+    
+    HUD = [[MBProgressHUD alloc] initWithView:self.view];
+    [self.view addSubview:HUD];
+    
+    //如果设置此属性则当前的view置于后台
+    HUD.dimBackground = YES;
+    
+    //设置对话框文字
+    HUD.labelText = @"请稍等";
+    
+    
 }
 - (IBAction)shareClick:(UIBarButtonItem *)sender {
     [UMSocialConfig hiddenNotInstallPlatforms:@[UMShareToQQ,UMShareToQzone,UMShareToWechatTimeline,UMShareToWechatTimeline]];
@@ -34,7 +51,7 @@
                                          appKey:@"554dd22c67e58e10ee006b55"
                                       shareText:[NSString stringWithFormat:@"资讯连接%@",_urlStr]
                                      shareImage:nil
-                                shareToSnsNames:[NSArray arrayWithObjects:UMShareToSina,UMShareToTencent,UMShareToRenren,UMShareToTencent,UMShareToWechatSession,UMShareToWechatTimeline,UMShareToQzone,UMShareToQQ,nil]
+                                shareToSnsNames:[NSArray arrayWithObjects:UMShareToSina,UMShareToRenren,UMShareToTencent,UMShareToWechatSession,UMShareToWechatTimeline,UMShareToQzone,UMShareToQQ,nil]
                                        delegate:self];
     
 }
@@ -65,12 +82,28 @@
 }
 -(void)webViewDidFinishLoad:(UIWebView *)webView
 {
-    
+    NSLog(@"结束");
+    [HUD removeFromSuperview];
+    [UIApplication sharedApplication].networkActivityIndicatorVisible=NO;
 }
 -(void)webViewDidStartLoad:(UIWebView *)webView
 {
-    
+    NSLog(@"开始");
+    //显示对话框
+    [HUD show:YES];
+    //    [HUD showAnimated:YES whileExecutingBlock:^{
+    //        //对话框显示时需要执行的操作
+    //        sleep(3);
+    //    } completionBlock:^{
+    //        //操作执行完后取消对话框
+    //        [HUD removeFromSuperview];
+    //
+    //        HUD = nil;
+    //    }];
+    [UIApplication sharedApplication].networkActivityIndicatorVisible=YES;
 }
+
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

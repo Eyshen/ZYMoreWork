@@ -26,7 +26,7 @@
     // Do any additional setup after loading the view.
     [self.navigationController.navigationBar setBarTintColor:[UIColor colorWithRed:0.012 green:0.133 blue:0.242 alpha:1.000]];
     ParallaxHeaderView *headerView=[ParallaxHeaderView parallaxHeaderViewWithCGSize:CGSizeMake(self.view.frame.size.width, 168)];
-    headerView.headerTitleLabel.text=@"我是天才,一切都是为了梦想";
+    headerView.headerTitleLabel.text=@"一切都是为了梦想";
     headerView.headerImage=[UIImage imageNamed:@"dream"];
     [self setData];
     

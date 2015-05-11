@@ -9,6 +9,7 @@
 #import "ZiXunViewController.h"
 #import "FindNetWork.h"
 #import "NewsViewController.h"
+#import "MJRefresh.h"
 @interface ZiXunViewController ()<UITableViewDataSource,UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *myTableView;
 
@@ -19,20 +20,95 @@
 {
     ZiXunParse *_parse;
     NSMutableArray *_strArr;
+    NSInteger _page;
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
+    _page=2;
     // Do any additional setup after loading the view.
     [self updateData];
+    
+    
+    [self.myTableView addGifHeaderWithRefreshingTarget:self refreshingAction:@selector(loadNewData)];
+    // 设置普通状态的动画图片
+    NSMutableArray *idleImages = [NSMutableArray array];
+    for (NSUInteger i = 1; i<=60; i++) {
+        UIImage *image = [UIImage imageNamed:[NSString stringWithFormat:@"dropdown_anim__000%zd", i]];
+        [idleImages addObject:image];
+    }
+    [self.myTableView.gifHeader setImages:idleImages forState:MJRefreshHeaderStateIdle];
+    
+    // 设置即将刷新状态的动画图片（一松开就会刷新的状态）
+    NSMutableArray *refreshingImages = [NSMutableArray array];
+    for (NSUInteger i = 1; i<=3; i++) {
+        UIImage *image = [UIImage imageNamed:[NSString stringWithFormat:@"dropdown_loading_0%zd", i]];
+        [refreshingImages addObject:image];
+    }
+    [self.myTableView.gifHeader setImages:refreshingImages forState:MJRefreshHeaderStatePulling];
+    
+    // 设置正在刷新状态的动画图片
+    [self.myTableView.gifHeader setImages:refreshingImages forState:MJRefreshHeaderStateRefreshing];
+    // 在这个例子中，即将刷新 和 正在刷新 用的是一样的动画图片
+    
+    // 马上进入刷新状态
+    [self.myTableView.gifHeader beginRefreshing];
+    
+    // 此时self.tableView.header == self.tableView.gifHeader
+    
+    
+    
+    
+#pragma mark--上拉加载
+    // 添加动画图片的上拉刷新
+    // 设置回调（一旦进入刷新状态，就调用target的action，也就是调用self的loadMoreData方法）
+    [self.myTableView addGifFooterWithRefreshingTarget:self refreshingAction:@selector(loadMoreData)];
+    
+    // 设置正在刷新状态的动画图片
+    for (NSUInteger i = 1; i<=3; i++) {
+        UIImage *image = [UIImage imageNamed:[NSString stringWithFormat:@"dropdown_loading_0%zd", i]];
+        [refreshingImages addObject:image];
+    }
+    self.myTableView.gifFooter.refreshingImages = refreshingImages;
+    
+    // 此时self.tableView.footer == self.tableView.gifFooter
+}
+-(void)loadNewData
+{
+    [UIApplication sharedApplication].networkActivityIndicatorVisible=YES;
+    _page=1;
+    [UIApplication sharedApplication].networkActivityIndicatorVisible=YES;
     [FindNetWork getNewsSuccess:^(ZiXunParse *parse) {
         _parse=parse;
-        
+        [UIApplication sharedApplication].networkActivityIndicatorVisible=NO;
+        [self.myTableView.header endRefreshing];
         [_myTableView reloadData];
     } failure:^(NSString *errorMessage) {
+        [UIApplication sharedApplication].networkActivityIndicatorVisible=NO;
         
         NSLog(@"下载失败!!%@",errorMessage);
     } urlStr:_strArr[0]];
 }
+
+-(void)loadMoreData
+{
+    _page++;
+    if (_page==2) {
+        [UIApplication sharedApplication].networkActivityIndicatorVisible=YES;
+        [FindNetWork getNewsSuccess:^(ZiXunParse *parse) {
+            [_parse.infoData addObjectsFromArray: parse.infoData];
+            [UIApplication sharedApplication].networkActivityIndicatorVisible=NO;
+            
+            [self.myTableView.header endRefreshing];
+            [_myTableView reloadData];
+        } failure:^(NSString *errorMessage) {
+            [UIApplication sharedApplication].networkActivityIndicatorVisible=NO;
+            
+            NSLog(@"下载失败!!%@",errorMessage);
+        } urlStr:_strArr[1]];
+    }
+}
+
+
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     return _parse.infoData.count;
@@ -48,7 +124,11 @@
     UIImageView *iv=(UIImageView *)[cell.contentView viewWithTag:27];
     UILabel *label=(UILabel *)[cell.contentView viewWithTag:28];
     ZiXunInfo *info=_parse.infoData[indexPath.row];
-    [iv setImageWithURL:[NSURL URLWithString:info.PicUrl]];
+    
+//    [iv setImageWithURL:[NSURL URLWithString:info.PicUrl]];
+    
+    [iv setImageWithURL:[NSURL URLWithString:info.PicUrl] placeholderImage:[UIImage imageNamed:@"fendou"]];
+    
     label.text=info.Title;
     return cell;
 }

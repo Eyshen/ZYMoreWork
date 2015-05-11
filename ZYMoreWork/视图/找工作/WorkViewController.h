@@ -10,4 +10,7 @@
 #import "FindNetWork.h"
 @interface WorkViewController : BaseViewController
 
+
+
+-(void)setAlterView;
 @end

@@ -8,12 +8,18 @@
 
 #import <UIKit/UIKit.h>
 #import <CoreData/CoreData.h>
-#import "BaseTabBarViewController.h"
+
+#import "DNWRootViewController.h"
+
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
+
+
 
 @property (strong, nonatomic) UIWindow *window;
 //写到.h的原因是,可以把它当成全局变量,当我们要做某些操作的时候,可以随时使用;
 @property (strong,nonatomic)BaseTabBarViewController *tabbarController;
+
+@property (strong,nonatomic)DNWRootViewController *menuViewController;
 //获取全局的简单模式
 +(AppDelegate *)shareDelegate;
 
