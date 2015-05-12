@@ -110,6 +110,9 @@
 		A1E0AA4E1AFB496B0065A34D /* ChoosePersonView.m in Sources */ = {isa = PBXBuildFile; fileRef = A1E0AA4B1AFB496B0065A34D /* ChoosePersonView.m */; };
 		A1E0AA4F1AFB496B0065A34D /* ImageLabelView.m in Sources */ = {isa = PBXBuildFile; fileRef = A1E0AA4D1AFB496B0065A34D /* ImageLabelView.m */; };
 		A1E0AA521AFB49D20065A34D /* Person.m in Sources */ = {isa = PBXBuildFile; fileRef = A1E0AA511AFB49D20065A34D /* Person.m */; };
+		A1F234381B01EB4700366A25 /* GuanyuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A1F234371B01EB4700366A25 /* GuanyuViewController.m */; };
+		A1F2343E1B01F7CB00366A25 /* UserInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A1F2343D1B01F7CB00366A25 /* UserInfoViewController.m */; };
+		A1F234421B02263A00366A25 /* JSImagePickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A1F234411B02263A00366A25 /* JSImagePickerViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -312,6 +315,12 @@
 		A1E0AA4D1AFB496B0065A34D /* ImageLabelView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageLabelView.m; sourceTree = "<group>"; };
 		A1E0AA501AFB49D20065A34D /* Person.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Person.h; sourceTree = "<group>"; };
 		A1E0AA511AFB49D20065A34D /* Person.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Person.m; sourceTree = "<group>"; };
+		A1F234361B01EB4700366A25 /* GuanyuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GuanyuViewController.h; sourceTree = "<group>"; };
+		A1F234371B01EB4700366A25 /* GuanyuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GuanyuViewController.m; sourceTree = "<group>"; };
+		A1F2343C1B01F7CB00366A25 /* UserInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserInfoViewController.h; sourceTree = "<group>"; };
+		A1F2343D1B01F7CB00366A25 /* UserInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserInfoViewController.m; sourceTree = "<group>"; };
+		A1F234401B02263A00366A25 /* JSImagePickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSImagePickerViewController.h; sourceTree = "<group>"; };
+		A1F234411B02263A00366A25 /* JSImagePickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSImagePickerViewController.m; sourceTree = "<group>"; };
 		B4200B8AE47CBEE0DE2C913C /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -519,6 +528,7 @@
 		A118D41C1AF21CE1009FB802 /* 设置 */ = {
 			isa = PBXGroup;
 			children = (
+				A1F2343F1B02260400366A25 /* userInfo */,
 				A16B46701AFE647A007F50CE /* 主页 */,
 				A16B46631AFE4871007F50CE /* 样式 */,
 				A118D4811AF221F6009FB802 /* Set.storyboard */,
@@ -526,6 +536,10 @@
 				A16B466E1AFE4910007F50CE /* StoryViewController.m */,
 				A1DAB6951B00EAF70047ED2F /* FankuiViewController.h */,
 				A1DAB6961B00EAF70047ED2F /* FankuiViewController.m */,
+				A1F234361B01EB4700366A25 /* GuanyuViewController.h */,
+				A1F234371B01EB4700366A25 /* GuanyuViewController.m */,
+				A1F2343C1B01F7CB00366A25 /* UserInfoViewController.h */,
+				A1F2343D1B01F7CB00366A25 /* UserInfoViewController.m */,
 			);
 			path = "设置";
 			sourceTree = "<group>";
@@ -876,6 +890,15 @@
 			path = "工作卡片";
 			sourceTree = "<group>";
 		};
+		A1F2343F1B02260400366A25 /* userInfo */ = {
+			isa = PBXGroup;
+			children = (
+				A1F234401B02263A00366A25 /* JSImagePickerViewController.h */,
+				A1F234411B02263A00366A25 /* JSImagePickerViewController.m */,
+			);
+			path = userInfo;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1033,6 +1056,7 @@
 				A118D4581AF21D20009FB802 /* UIButton+AFNetworking.m in Sources */,
 				A196737D1B0078B1000FF48C /* DNWRootViewController.m in Sources */,
 				A118D45B1AF21D20009FB802 /* UIRefreshControl+AFNetworking.m in Sources */,
+				A1F234421B02263A00366A25 /* JSImagePickerViewController.m in Sources */,
 				A16B466C1AFE48EA007F50CE /* UIImage+ImageEffects.m in Sources */,
 				A118D4571AF21D20009FB802 /* UIAlertView+AFNetworking.m in Sources */,
 				A16B46731AFE64B2007F50CE /* MrEysionViewController.m in Sources */,
@@ -1043,6 +1067,7 @@
 				A1E0AA4E1AFB496B0065A34D /* ChoosePersonView.m in Sources */,
 				A1AE23F11AFC4A5700330826 /* CompanyViewController.m in Sources */,
 				A1203AF11B009A9800E50F3B /* MJRefreshComponent.m in Sources */,
+				A1F2343E1B01F7CB00366A25 /* UserInfoViewController.m in Sources */,
 				A1E0AA4F1AFB496B0065A34D /* ImageLabelView.m in Sources */,
 				A118D44B1AF21D20009FB802 /* AFHTTPRequestOperation.m in Sources */,
 				A1971B571AF38497007A034B /* FindNetWork.m in Sources */,
@@ -1067,6 +1092,7 @@
 				A1E0AA481AFB3DEF0065A34D /* IosjobParse.m in Sources */,
 				A1DAB6971B00EAF70047ED2F /* FankuiViewController.m in Sources */,
 				A16B45E01AFCF9AB007F50CE /* BaomingSuccessViewController.m in Sources */,
+				A1F234381B01EB4700366A25 /* GuanyuViewController.m in Sources */,
 				A118D4521AF21D20009FB802 /* AFURLResponseSerialization.m in Sources */,
 				A16B45DD1AFCEBF3007F50CE /* BaomingViewController.m in Sources */,
 				A16B45E31AFDC413007F50CE /* UIViewController+KeyboardAdditions.m in Sources */,

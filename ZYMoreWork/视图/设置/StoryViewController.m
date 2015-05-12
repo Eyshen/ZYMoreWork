@@ -11,6 +11,8 @@
 #import "StoryViewController.h"
 #import "MrEysionViewController.h"
 #import "FankuiViewController.h"
+#import "GuanyuViewController.h"
+#import "UserInfoViewController.h"
 //环信
 //#import "ChatViewController.h"
 //#import "EaseMob.h"
@@ -119,8 +121,16 @@
         UIStoryboard *storyboard=[UIStoryboard storyboardWithName:@"Set" bundle:nil];
          FankuiViewController*fankui=[storyboard instantiateViewControllerWithIdentifier:@"FankuiViewController"];
         [self.navigationController pushViewController:fankui animated:YES];
-        
-        
+    }
+    if (indexPath.row==2) {
+        UIStoryboard *storyboard=[UIStoryboard storyboardWithName:@"Set" bundle:nil];
+        GuanyuViewController*ourView=[storyboard instantiateViewControllerWithIdentifier:@"GuanyuViewController"];
+        [self.navigationController pushViewController:ourView animated:YES];
+    }
+    if (indexPath.row==3){
+        UIStoryboard *storyboard=[UIStoryboard storyboardWithName:@"Set" bundle:nil];
+        UserInfoViewController *userVC=[storyboard instantiateViewControllerWithIdentifier:@"UserInfoViewController"];
+        [self.navigationController pushViewController:userVC animated:YES];
     }
 }
 
@@ -137,7 +147,7 @@
 -(void)setData
 {
 _imageArr=@[@"setting1",@"setting2",@"setting3",@"setting4",@"setting5",@"setting6",@"setting7"];
-    _titleArr=@[@"仅wifi网络下显示图片",@"意见反馈",@"关于我们",@"官方账号",@"官方主页",@"客服热线"];
+    _titleArr=@[@"仅wifi网络下显示图片",@"意见反馈",@"关于我们",@"用户",@"官方主页",@"客服热线"];
     _infoArr=@[@"http://blog.csdn.net/mreshen",@"400-010-1111"];
     
 }

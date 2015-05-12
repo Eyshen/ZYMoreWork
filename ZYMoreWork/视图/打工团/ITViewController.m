@@ -112,7 +112,7 @@ static const CGFloat ChoosePersonButtonVerticalPadding=20.f;
     deformationBtn.progressColor = [UIColor whiteColor];
     [self.view addSubview:deformationBtn];
     
-    [deformationBtn.forDisplayButton setTitle:@"关注的公司" forState:UIControlStateNormal];
+    [deformationBtn.forDisplayButton setTitle:@"看过的公司" forState:UIControlStateNormal];
     
     [deformationBtn.forDisplayButton.titleLabel setFont:[UIFont systemFontOfSize:15]];
     [deformationBtn.forDisplayButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
@@ -149,8 +149,8 @@ static const CGFloat ChoosePersonButtonVerticalPadding=20.f;
     }
     if (sender.selected==1) {
         [_myTableView reloadData];
-        if (_companyData==nil) {
-            UIAlertView *av=[[UIAlertView alloc]initWithTitle:@"提示" message:@"你还没有关注哪家公司" delegate:nil cancelButtonTitle:@"知道了" otherButtonTitles: nil];
+        if (_companyData.count==0) {
+            UIAlertView *av=[[UIAlertView alloc]initWithTitle:@"提示" message:@"你还没有查看哪家公司的详情" delegate:nil cancelButtonTitle:@"知道了" otherButtonTitles: nil];
             [av show];
         }else{
             CGRect frame=_bgView.frame;

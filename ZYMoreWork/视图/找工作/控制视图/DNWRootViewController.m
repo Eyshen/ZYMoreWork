@@ -12,7 +12,11 @@
 
 #import "WorkViewController.h"
 
-@interface DNWRootViewController ()<UIGestureRecognizerDelegate,UITableViewDataSource,UITableViewDelegate>
+//地图
+#import <MAMapKit/MAMapKit.h>
+#import <AMapSearchKit/AMapSearchAPI.h>
+
+@interface DNWRootViewController ()<UIGestureRecognizerDelegate,UITableViewDataSource,UITableViewDelegate,MAMapViewDelegate,AMapSearchDelegate>
 {
     
     float ScreenWidth;
@@ -22,7 +26,12 @@
     BOOL _ismove;
     NSString *_nowCity;
     
+    //地图
+    MAMapView *_mapView;
+    //tableView
+    UITableView *_myTableView;
     
+    AMapSearchAPI *_search;
     
 }
 @property(nonatomic,strong)UITapGestureRecognizer *tapRecongnizer;
@@ -44,7 +53,7 @@
     self.tabBarController.tabBar.hidden=YES;
     //    self.navigationController.navigationBar.hidden=YES;
     UIImageView *iv=[[UIImageView alloc]initWithImage:[UIImage imageNamed:@"citybg"]];
-    
+    _nowCity=nil;
     [self.view addSubview:iv];
     _x=0;
     _y=0;
@@ -91,7 +100,7 @@
     
     
     _leftButton = [UIButton buttonWithType:UIButtonTypeSystem];
-    _leftButton.frame = CGRectMake(0, 20, 40, 40);
+    _leftButton.frame = CGRectMake(0, 20, 50, 40);
     _leftButton.tag=77;
     
     [_leftButton setTitle:@"青岛" forState:UIControlStateNormal];
@@ -142,13 +151,30 @@
     
     [self.midTBC addObserver:self forKeyPath:@"selectedIndex" options:NSKeyValueObservingOptionOld|NSKeyValueObservingOptionNew context:nil];
     
+}
+#pragma mark---地图
+-(void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
     
+    // Do any additional setup after loading the view, typically from a nib. //配置用户 Key
+    [MAMapServices sharedServices].apiKey = @"a1bdc65cd7bacf365e992624b457b043";
     
+    _mapView = [[MAMapView alloc] initWithFrame:CGRectMake(0, 0, 100,100)];
+    _mapView.delegate = self;
+//    [self.view addSubview:_mapView];
     
-
+    //位置搜索
+    _search = [[AMapSearchAPI alloc] initWithSearchKey:@"a1bdc65cd7bacf365e992624b457b043" Delegate:self];
+    
+    _search.language = AMapSearchLanguage_zh_CN;
+    
     
     
 }
+
+
+
 - (void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController
 {
     self.midTBC.selectedIndex=tabBarController.selectedIndex;
@@ -181,12 +207,12 @@
 -(void)createLeftView
 {
     
-    UITableView *tableview=[[UITableView alloc]initWithFrame:CGRectMake(ScreenWidth-240, 20, 240, ScreenHeight-20)];
-    tableview.delegate=self;
-    tableview.dataSource=self;
-    tableview.backgroundColor=[UIColor clearColor];
-    tableview.separatorColor=[UIColor clearColor];
-    [self.leftview addSubview:tableview];
+    _myTableView=[[UITableView alloc]initWithFrame:CGRectMake(ScreenWidth-240, 20, 240, ScreenHeight-20)];
+    _myTableView.delegate=self;
+    _myTableView.dataSource=self;
+    _myTableView.backgroundColor=[UIColor clearColor];
+    _myTableView.separatorColor=[UIColor clearColor];
+    [self.leftview addSubview:_myTableView];
     
 }
 #pragma mark--tableView生命周期
@@ -247,6 +273,62 @@
     [view addSubview:label];
     return view;
 }
+
+-(void)cellBtnClick:(UIButton *)sender
+{
+    _mapView.showsUserLocation=YES;
+    
+}
+#pragma mark---地图定位回调函数
+
+-(void)mapView:(MAMapView *)mapView didUpdateUserLocation:(MAUserLocation *)userLocation
+updatingLocation:(BOOL)updatingLocation
+{
+    if(updatingLocation) {
+        //取出当前位置的坐标
+        NSLog(@"latitude : %f,longitude: %f",userLocation.coordinate.latitude,userLocation.coordinate.longitude);
+       _mapView.showsUserLocation=NO;
+        
+#pragma mark----位置反编译
+        
+        
+        
+        //构造AMapReGeocodeSearchRequest对象，location为必选项，radius为可选项
+        AMapReGeocodeSearchRequest *regeoRequest = [[AMapReGeocodeSearchRequest alloc] init];
+        regeoRequest.searchType = AMapSearchType_ReGeocode;
+        
+        regeoRequest.location=[AMapGeoPoint locationWithLatitude:userLocation.coordinate.latitude longitude:userLocation.coordinate.longitude];
+        regeoRequest.radius = 10000;
+        regeoRequest.requireExtension = YES;
+        
+        //发起逆地理编码
+        [_search AMapReGoecodeSearch: regeoRequest];
+    }
+    
+}
+//实现逆地理编码的回调函数
+- (void)onReGeocodeSearchDone:(AMapReGeocodeSearchRequest *)request response:(AMapReGeocodeSearchResponse *)response
+{
+    if(response.regeocode != nil)
+    {
+        //通过AMapReGeocodeSearchResponse对象处理搜索结果
+        NSString *result = [NSString stringWithFormat:@"%@", response.regeocode.addressComponent.city];
+        
+        
+        
+        
+        if (result==nil) {
+            result=[NSString stringWithFormat:@"%@", response.regeocode.addressComponent.province];
+        }
+        _nowCity=result;
+        [_myTableView reloadData];
+        
+        NSLog(@"ReGeo: %@", result);
+    }
+}
+
+
+
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *leftCellID=@"leftCell";
@@ -254,14 +336,36 @@
         UITableViewCell *cell=[tableView dequeueReusableCellWithIdentifier:leftCellID];
         if (!cell) {
             cell=[[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:leftCellID];
+            UILabel *label=[[UILabel alloc]initWithFrame:CGRectMake(100, 5, cell.contentView.frame.size.width-100, 20)];
+            label.tag=101;
+            label.textColor=[UIColor whiteColor];
+            label.font=[UIFont systemFontOfSize:13];
+            
+            
+            UIButton *btn=[UIButton buttonWithType:UIButtonTypeSystem];
+            btn.tag=100;
+            btn.frame=CGRectMake(0, 3, 100, 24);
+            btn.backgroundColor=[UIColor colorWithWhite:0.258 alpha:1.000];
+            btn.tintColor=[UIColor whiteColor];
+            btn.titleLabel.font=[UIFont systemFontOfSize:14];
+            
+            
+            [cell.contentView addSubview:btn];
+            [cell.contentView addSubview: label];
+            cell.backgroundColor=[UIColor clearColor];
         }
-        UILabel *label=[[UILabel alloc]initWithFrame:CGRectMake(10, 5, cell.contentView.frame.size.width-10, 20)];
-        _nowCity=@"大连";
-        label.text=[NSString stringWithFormat:@"当前定位城市:%@",_nowCity];
-        label.textColor=[UIColor whiteColor];
-        label.font=[UIFont systemFontOfSize:13];
-        [cell.contentView addSubview: label];
-        cell.backgroundColor=[UIColor clearColor];
+        UIButton *btn=(UIButton *)[cell.contentView viewWithTag:100];
+        [btn setTitle:@"定位当前城市" forState:UIControlStateNormal];
+        [btn addTarget:self action:@selector(cellBtnClick:) forControlEvents:UIControlEventTouchUpInside];
+        
+        
+        UILabel *label=(UILabel *)[cell.contentView viewWithTag:101];
+        if (_cityArr!=nil) {
+            label.text=[NSString stringWithFormat:@"   %@",_nowCity];
+        }else{
+            label.text=@"";
+        }
+        
         return cell;
     }
     
@@ -291,7 +395,12 @@
     BaseNavigationViewController *nc=self.midTBC.viewControllers[0];
     WorkViewController *vc=nc.viewControllers[0];
     
-    [_leftButton setTitle:_cityArr[indexPath.row] forState:UIControlStateNormal];
+    if (indexPath.section==0) {
+        [_leftButton setTitle:_nowCity forState:UIControlStateNormal];
+    }else{
+        [_leftButton setTitle:_cityArr[indexPath.row] forState:UIControlStateNormal];
+    }
+    
     
     
     [UIView animateWithDuration:0.3 animations:^{

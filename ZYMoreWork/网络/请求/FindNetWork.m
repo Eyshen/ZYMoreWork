@@ -89,8 +89,10 @@
 {
     AFHTTPRequestOperationManager *manager=[AFHTTPRequestOperationManager manager];
     manager.responseSerializer.acceptableContentTypes=[NSSet setWithObject:@"application/json"];
-    //mi.zhaopin.com/iPhone/info/Infolist?d=45389FE5E07070A195009971B5A2544D&pageSize=20&key=135486907262855&channel=apple&pageIndex=1&v=4.1&t=1431240605&e=646ec20311898ccbf34d7cee524c54d9
+    
+    //mi.zhaopin.com/iPhone/info/Infolist?channel=apple&d=45389FE5E07070A195009971B5A2544D&key=135486907262855&pageIndex=1&pageSize=20&v=4.3&t=1431420178&e=b66e086c8abdfafe6a0970738a0dc3bd
     //mi.zhaopin.com/iPhone/info/Infolist?d=45389FE5E07070A195009971B5A2544D&pageSize=20&key=135486907262855&channel=apple&pageIndex=2&v=4.1&t=1431244455&e=8d0bf296f97cd7e783101d0cd16f6481
+    //mi.zhaopin.com/iPhone/info/Infolist?channel=apple&d=45389FE5E07070A195009971B5A2544D&key=135486907262855&pageIndex=2&pageSize=20&v=4.3&t=1431420293&e=4698b909b3d5b5938a75e64f5ae86fac
     [manager GET:urlStr parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
         
         success([ZiXunParse parse:responseObject]);

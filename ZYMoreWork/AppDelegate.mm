@@ -43,10 +43,40 @@
     self.window.backgroundColor=[UIColor whiteColor];
     [self.window makeKeyAndVisible];
     
+    
+#pragma mark----第一次登陆介绍
+    if(![[NSUserDefaults standardUserDefaults] boolForKey:@"firstStart"])
+    {
+        CGFloat width=self.window.frame.size.width;
+        CGFloat height=self.window.frame.size.height;
+        
+        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"firstStart"];
+        
+        UIImageView *iv = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, width,height)];
+        iv.image = [UIImage imageNamed:@"begind"];
+        iv.userInteractionEnabled = YES;
+        
+        
+        
+        UITapGestureRecognizer *tap=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(btnClick)];
+        [iv addGestureRecognizer:tap];
+        [self.window addSubview: iv];
+
+    }
+    else{
 #pragma  修改
-//    _tabbarController=[BaseTabBarViewController new];
-    _menuViewController=[DNWRootViewController new];
-    _window.rootViewController=_menuViewController;
+        //    _tabbarController=[BaseTabBarViewController new];
+        _menuViewController=[DNWRootViewController new];
+        _window.rootViewController=_menuViewController;
+    }
+    
+    
+    
+    
+    
+    
+    
+
     
     
 #pragma --地图定位功能
@@ -128,7 +158,15 @@
 //    
 //}
 
-
+-(void)btnClick
+{
+    
+#pragma  修改
+    //    _tabbarController=[BaseTabBarViewController new];
+    _menuViewController=[DNWRootViewController new];
+    _window.rootViewController=_menuViewController;
+    
+}
 
 +(AppDelegate *)shareDelegate
 {
