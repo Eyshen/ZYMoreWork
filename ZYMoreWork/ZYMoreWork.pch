@@ -13,4 +13,16 @@
 // You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
 #import <UIKit/UIKit.h>
 #import <Foundation/Foundation.h>
+
+//#import "ChatDemoUIDefine.h"
+//#import "WCAlertView.h"
+//#import "TTGlobalUICommon.h"
+//#import "UIViewController+HUD.h"
+//#import "UIViewController+DismissKeyboard.h"
+//#import "NSString+Valid.h"
+//
+////    #import "EaseMob.h"
+//#import "EMSDKFull.h"
+
+
 #endif

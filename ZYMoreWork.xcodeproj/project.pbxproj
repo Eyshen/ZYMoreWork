@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4E581624FEF40FA258FF806D /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B4200B8AE47CBEE0DE2C913C /* libPods.a */; };
 		A10230AA1AFC8730002FE71B /* XiangQIngParse.m in Sources */ = {isa = PBXBuildFile; fileRef = A10230A91AFC8730002FE71B /* XiangQIngParse.m */; };
 		A118D3EF1AF2109D009FB802 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A118D3EE1AF2109D009FB802 /* main.m */; };
 		A118D3F21AF2109D009FB802 /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = A118D3F11AF2109D009FB802 /* AppDelegate.mm */; };
@@ -90,22 +91,40 @@
 		A196736C1AFF3D35000FF48C /* ZiXunParse.m in Sources */ = {isa = PBXBuildFile; fileRef = A196736B1AFF3D35000FF48C /* ZiXunParse.m */; };
 		A19673741AFF53B2000FF48C /* NewsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A19673731AFF53B2000FF48C /* NewsViewController.m */; };
 		A196737D1B0078B1000FF48C /* DNWRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A196737C1B0078B1000FF48C /* DNWRootViewController.m */; };
+		A196D7111B01B06B009FF8B0 /* ZYMoreWorkTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A196D7101B01B06B009FF8B0 /* ZYMoreWorkTests.m */; };
 		A1971B521AF3848B007A034B /* FindWorkParse.m in Sources */ = {isa = PBXBuildFile; fileRef = A1971B4D1AF3848B007A034B /* FindWorkParse.m */; };
 		A1971B531AF3848B007A034B /* GongTuanParse.m in Sources */ = {isa = PBXBuildFile; fileRef = A1971B4F1AF3848B007A034B /* GongTuanParse.m */; };
 		A1971B541AF3848B007A034B /* MendianParse.m in Sources */ = {isa = PBXBuildFile; fileRef = A1971B511AF3848B007A034B /* MendianParse.m */; };
 		A1971B571AF38497007A034B /* FindNetWork.m in Sources */ = {isa = PBXBuildFile; fileRef = A1971B561AF38497007A034B /* FindNetWork.m */; };
+		A1A6C3E71B018B6C00F3BE7D /* DeformationButton.m in Sources */ = {isa = PBXBuildFile; fileRef = A1A6C3E31B018B6C00F3BE7D /* DeformationButton.m */; };
+		A1A6C3E81B018B6C00F3BE7D /* MMMaterialDesignSpinner.m in Sources */ = {isa = PBXBuildFile; fileRef = A1A6C3E61B018B6C00F3BE7D /* MMMaterialDesignSpinner.m */; };
 		A1AE23F11AFC4A5700330826 /* CompanyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A1AE23F01AFC4A5700330826 /* CompanyViewController.m */; };
+		A1DAB2F91B00E55F0047ED2F /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1DAB2F81B00E55F0047ED2F /* MobileCoreServices.framework */; };
+		A1DAB2FB1B00E56C0047ED2F /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1DAB2FA1B00E56C0047ED2F /* CFNetwork.framework */; };
+		A1DAB6901B00EA7B0047ED2F /* libstdc++.6.0.9.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A1DAB68F1B00EA7B0047ED2F /* libstdc++.6.0.9.dylib */; };
+		A1DAB6921B00EAA10047ED2F /* libresolv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A1DAB6911B00EAA10047ED2F /* libresolv.dylib */; };
+		A1DAB6941B00EAAF0047ED2F /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A1DAB6931B00EAAF0047ED2F /* libxml2.dylib */; };
+		A1DAB6971B00EAF70047ED2F /* FankuiViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A1DAB6961B00EAF70047ED2F /* FankuiViewController.m */; };
 		A1E0AA451AFB3CF40065A34D /* ITViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A1E0AA441AFB3CF40065A34D /* ITViewController.m */; };
 		A1E0AA481AFB3DEF0065A34D /* IosjobParse.m in Sources */ = {isa = PBXBuildFile; fileRef = A1E0AA471AFB3DEF0065A34D /* IosjobParse.m */; };
 		A1E0AA4E1AFB496B0065A34D /* ChoosePersonView.m in Sources */ = {isa = PBXBuildFile; fileRef = A1E0AA4B1AFB496B0065A34D /* ChoosePersonView.m */; };
 		A1E0AA4F1AFB496B0065A34D /* ImageLabelView.m in Sources */ = {isa = PBXBuildFile; fileRef = A1E0AA4D1AFB496B0065A34D /* ImageLabelView.m */; };
 		A1E0AA521AFB49D20065A34D /* Person.m in Sources */ = {isa = PBXBuildFile; fileRef = A1E0AA511AFB49D20065A34D /* Person.m */; };
-		C3E9B257D46478062D60EA7F /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 67833970FBA101880F2694D3 /* libPods.a */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		A196D7121B01B06B009FF8B0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A118D3E11AF2109D009FB802 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A118D3E81AF2109D009FB802;
+			remoteInfo = ZYMoreWork;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
-		49218BEE9D34832B2CE80E36 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
-		67833970FBA101880F2694D3 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		607288E940D56F40589705E3 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		8A469772C5FF9680197AF0EE /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		A10230A81AFC8730002FE71B /* XiangQIngParse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XiangQIngParse.h; sourceTree = "<group>"; };
 		A10230A91AFC8730002FE71B /* XiangQIngParse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XiangQIngParse.m; sourceTree = "<group>"; };
 		A118D3E91AF2109D009FB802 /* ZYMoreWork.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ZYMoreWork.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -115,8 +134,6 @@
 		A118D3F11AF2109D009FB802 /* AppDelegate.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = AppDelegate.mm; sourceTree = "<group>"; };
 		A118D3F41AF2109D009FB802 /* ZYMoreWork.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ZYMoreWork.xcdatamodel; sourceTree = "<group>"; };
 		A118D3FC1AF2109D009FB802 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		A118D40A1AF2109D009FB802 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		A118D40B1AF2109D009FB802 /* ZYMoreWorkTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZYMoreWorkTests.m; sourceTree = "<group>"; };
 		A118D4151AF21A03009FB802 /* ZYMoreWork.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZYMoreWork.pch; sourceTree = "<group>"; };
 		A118D4231AF21D20009FB802 /* AFHTTPRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperation.h; sourceTree = "<group>"; };
 		A118D4241AF21D20009FB802 /* AFHTTPRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPRequestOperation.m; sourceTree = "<group>"; };
@@ -261,6 +278,9 @@
 		A19673731AFF53B2000FF48C /* NewsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsViewController.m; sourceTree = "<group>"; };
 		A196737B1B0078B1000FF48C /* DNWRootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DNWRootViewController.h; sourceTree = "<group>"; };
 		A196737C1B0078B1000FF48C /* DNWRootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DNWRootViewController.m; sourceTree = "<group>"; };
+		A196D70C1B01B06B009FF8B0 /* ZYMoreWorkTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ZYMoreWorkTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		A196D70F1B01B06B009FF8B0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A196D7101B01B06B009FF8B0 /* ZYMoreWorkTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZYMoreWorkTests.m; sourceTree = "<group>"; };
 		A1971B4C1AF3848B007A034B /* FindWorkParse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FindWorkParse.h; sourceTree = "<group>"; };
 		A1971B4D1AF3848B007A034B /* FindWorkParse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FindWorkParse.m; sourceTree = "<group>"; };
 		A1971B4E1AF3848B007A034B /* GongTuanParse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GongTuanParse.h; sourceTree = "<group>"; };
@@ -269,8 +289,19 @@
 		A1971B511AF3848B007A034B /* MendianParse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MendianParse.m; sourceTree = "<group>"; };
 		A1971B551AF38497007A034B /* FindNetWork.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FindNetWork.h; sourceTree = "<group>"; };
 		A1971B561AF38497007A034B /* FindNetWork.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FindNetWork.m; sourceTree = "<group>"; };
+		A1A6C3E21B018B6C00F3BE7D /* DeformationButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeformationButton.h; sourceTree = "<group>"; };
+		A1A6C3E31B018B6C00F3BE7D /* DeformationButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeformationButton.m; sourceTree = "<group>"; };
+		A1A6C3E51B018B6C00F3BE7D /* MMMaterialDesignSpinner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMMaterialDesignSpinner.h; sourceTree = "<group>"; };
+		A1A6C3E61B018B6C00F3BE7D /* MMMaterialDesignSpinner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMMaterialDesignSpinner.m; sourceTree = "<group>"; };
 		A1AE23EF1AFC4A5700330826 /* CompanyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CompanyViewController.h; path = ../CompanyViewController.h; sourceTree = "<group>"; };
 		A1AE23F01AFC4A5700330826 /* CompanyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CompanyViewController.m; path = ../CompanyViewController.m; sourceTree = "<group>"; };
+		A1DAB2F81B00E55F0047ED2F /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		A1DAB2FA1B00E56C0047ED2F /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		A1DAB68F1B00EA7B0047ED2F /* libstdc++.6.0.9.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libstdc++.6.0.9.dylib"; path = "usr/lib/libstdc++.6.0.9.dylib"; sourceTree = SDKROOT; };
+		A1DAB6911B00EAA10047ED2F /* libresolv.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libresolv.dylib; path = usr/lib/libresolv.dylib; sourceTree = SDKROOT; };
+		A1DAB6931B00EAAF0047ED2F /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
+		A1DAB6951B00EAF70047ED2F /* FankuiViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FankuiViewController.h; sourceTree = "<group>"; };
+		A1DAB6961B00EAF70047ED2F /* FankuiViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FankuiViewController.m; sourceTree = "<group>"; };
 		A1E0AA431AFB3CF40065A34D /* ITViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ITViewController.h; sourceTree = "<group>"; };
 		A1E0AA441AFB3CF40065A34D /* ITViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ITViewController.m; sourceTree = "<group>"; };
 		A1E0AA461AFB3DEF0065A34D /* IosjobParse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IosjobParse.h; sourceTree = "<group>"; };
@@ -281,7 +312,7 @@
 		A1E0AA4D1AFB496B0065A34D /* ImageLabelView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageLabelView.m; sourceTree = "<group>"; };
 		A1E0AA501AFB49D20065A34D /* Person.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Person.h; sourceTree = "<group>"; };
 		A1E0AA511AFB49D20065A34D /* Person.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Person.m; sourceTree = "<group>"; };
-		B1B9F9B206CB3765BC5C6A20 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		B4200B8AE47CBEE0DE2C913C /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -289,13 +320,18 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A1DAB6941B00EAAF0047ED2F /* libxml2.dylib in Frameworks */,
+				A1DAB6921B00EAA10047ED2F /* libresolv.dylib in Frameworks */,
+				A1DAB6901B00EA7B0047ED2F /* libstdc++.6.0.9.dylib in Frameworks */,
+				A16B465C1AFE251B007F50CE /* libsqlite3.dylib in Frameworks */,
+				A1DAB2FB1B00E56C0047ED2F /* CFNetwork.framework in Frameworks */,
+				A1DAB2F91B00E55F0047ED2F /* MobileCoreServices.framework in Frameworks */,
 				A1203B051B00AB6600E50F3B /* OpenGLES.framework in Frameworks */,
 				A1203B031B00AB5900E50F3B /* QuartzCore.framework in Frameworks */,
 				A1203B011B00AB4C00E50F3B /* CoreLocation.framework in Frameworks */,
 				A16B46621AFE2537007F50CE /* libz.dylib in Frameworks */,
 				A16B46601AFE252E007F50CE /* libstdc++.dylib in Frameworks */,
 				A16B465E1AFE2525007F50CE /* CoreTelephony.framework in Frameworks */,
-				A16B465C1AFE251B007F50CE /* libsqlite3.dylib in Frameworks */,
 				A16B465A1AFE2512007F50CE /* CoreGraphics.framework in Frameworks */,
 				A16B46581AFE2501007F50CE /* SystemConfiguration.framework in Frameworks */,
 				A16B46561AFE24F6007F50CE /* libiconv.dylib in Frameworks */,
@@ -305,16 +341,37 @@
 				A16B46521AFE24A2007F50CE /* libWeChatSDK.a in Frameworks */,
 				A16B464F1AFE24A2007F50CE /* TencentOpenAPI.framework in Frameworks */,
 				A16B46381AFE2427007F50CE /* libUMSocial_Sdk_4.2.2.a in Frameworks */,
-				C3E9B257D46478062D60EA7F /* libPods.a in Frameworks */,
+				4E581624FEF40FA258FF806D /* libPods.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A196D7091B01B06B009FF8B0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		320E3581D48AA16E4B0447E6 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				8A469772C5FF9680197AF0EE /* Pods.debug.xcconfig */,
+				607288E940D56F40589705E3 /* Pods.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		6C1F686ED3FB7450DA4BA252 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A1DAB6931B00EAAF0047ED2F /* libxml2.dylib */,
+				A1DAB6911B00EAA10047ED2F /* libresolv.dylib */,
+				A1DAB68F1B00EA7B0047ED2F /* libstdc++.6.0.9.dylib */,
+				A1DAB2FA1B00E56C0047ED2F /* CFNetwork.framework */,
+				A1DAB2F81B00E55F0047ED2F /* MobileCoreServices.framework */,
 				A1203B041B00AB6600E50F3B /* OpenGLES.framework */,
 				A1203B021B00AB5900E50F3B /* QuartzCore.framework */,
 				A1203B001B00AB4C00E50F3B /* CoreLocation.framework */,
@@ -326,7 +383,7 @@
 				A16B46571AFE2501007F50CE /* SystemConfiguration.framework */,
 				A16B46551AFE24F6007F50CE /* libiconv.dylib */,
 				A16B46531AFE24E9007F50CE /* Security.framework */,
-				67833970FBA101880F2694D3 /* libPods.a */,
+				B4200B8AE47CBEE0DE2C913C /* libPods.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -339,10 +396,10 @@
 				A118D41D1AF21CE1009FB802 /* 网络 */,
 				A118D4211AF21CE1009FB802 /* 自定义类型 */,
 				A118D3EB1AF2109D009FB802 /* ZYMoreWork */,
-				A118D4081AF2109D009FB802 /* ZYMoreWorkTests */,
+				A196D70D1B01B06B009FF8B0 /* ZYMoreWorkTests */,
 				A118D3EA1AF2109D009FB802 /* Products */,
-				A23FFF65907B078D72DF870A /* Pods */,
 				6C1F686ED3FB7450DA4BA252 /* Frameworks */,
+				320E3581D48AA16E4B0447E6 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -350,6 +407,7 @@
 			isa = PBXGroup;
 			children = (
 				A118D3E91AF2109D009FB802 /* ZYMoreWork.app */,
+				A196D70C1B01B06B009FF8B0 /* ZYMoreWorkTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -372,23 +430,6 @@
 				A118D3ED1AF2109D009FB802 /* Info.plist */,
 				A118D3EE1AF2109D009FB802 /* main.m */,
 				A118D4151AF21A03009FB802 /* ZYMoreWork.pch */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		A118D4081AF2109D009FB802 /* ZYMoreWorkTests */ = {
-			isa = PBXGroup;
-			children = (
-				A118D40B1AF2109D009FB802 /* ZYMoreWorkTests.m */,
-				A118D4091AF2109D009FB802 /* Supporting Files */,
-			);
-			path = ZYMoreWorkTests;
-			sourceTree = "<group>";
-		};
-		A118D4091AF2109D009FB802 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				A118D40A1AF2109D009FB802 /* Info.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -439,6 +480,7 @@
 		A118D4191AF21CE1009FB802 /* 互联网 */ = {
 			isa = PBXGroup;
 			children = (
+				A1A6C3E11B018B6C00F3BE7D /* DeformationButton */,
 				A1AE23F21AFC508400330826 /* 公司详情 */,
 				A1E0AA491AFB464B0065A34D /* 工作卡片 */,
 				A118D47D1AF221D9009FB802 /* Gongtuan.storyboard */,
@@ -482,6 +524,8 @@
 				A118D4811AF221F6009FB802 /* Set.storyboard */,
 				A16B466D1AFE4910007F50CE /* StoryViewController.h */,
 				A16B466E1AFE4910007F50CE /* StoryViewController.m */,
+				A1DAB6951B00EAF70047ED2F /* FankuiViewController.h */,
+				A1DAB6961B00EAF70047ED2F /* FankuiViewController.m */,
 			);
 			path = "设置";
 			sourceTree = "<group>";
@@ -774,6 +818,42 @@
 			path = "控制视图";
 			sourceTree = "<group>";
 		};
+		A196D70D1B01B06B009FF8B0 /* ZYMoreWorkTests */ = {
+			isa = PBXGroup;
+			children = (
+				A196D7101B01B06B009FF8B0 /* ZYMoreWorkTests.m */,
+				A196D70E1B01B06B009FF8B0 /* Supporting Files */,
+			);
+			path = ZYMoreWorkTests;
+			sourceTree = "<group>";
+		};
+		A196D70E1B01B06B009FF8B0 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				A196D70F1B01B06B009FF8B0 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		A1A6C3E11B018B6C00F3BE7D /* DeformationButton */ = {
+			isa = PBXGroup;
+			children = (
+				A1A6C3E21B018B6C00F3BE7D /* DeformationButton.h */,
+				A1A6C3E31B018B6C00F3BE7D /* DeformationButton.m */,
+				A1A6C3E41B018B6C00F3BE7D /* MMMaterialDesignSpinner-master */,
+			);
+			path = DeformationButton;
+			sourceTree = "<group>";
+		};
+		A1A6C3E41B018B6C00F3BE7D /* MMMaterialDesignSpinner-master */ = {
+			isa = PBXGroup;
+			children = (
+				A1A6C3E51B018B6C00F3BE7D /* MMMaterialDesignSpinner.h */,
+				A1A6C3E61B018B6C00F3BE7D /* MMMaterialDesignSpinner.m */,
+			);
+			path = "MMMaterialDesignSpinner-master";
+			sourceTree = "<group>";
+		};
 		A1AE23F21AFC508400330826 /* 公司详情 */ = {
 			isa = PBXGroup;
 			children = (
@@ -794,15 +874,6 @@
 				A1E0AA4D1AFB496B0065A34D /* ImageLabelView.m */,
 			);
 			path = "工作卡片";
-			sourceTree = "<group>";
-		};
-		A23FFF65907B078D72DF870A /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				B1B9F9B206CB3765BC5C6A20 /* Pods.debug.xcconfig */,
-				49218BEE9D34832B2CE80E36 /* Pods.release.xcconfig */,
-			);
-			name = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -827,6 +898,24 @@
 			productReference = A118D3E91AF2109D009FB802 /* ZYMoreWork.app */;
 			productType = "com.apple.product-type.application";
 		};
+		A196D70B1B01B06B009FF8B0 /* ZYMoreWorkTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A196D7141B01B06B009FF8B0 /* Build configuration list for PBXNativeTarget "ZYMoreWorkTests" */;
+			buildPhases = (
+				A196D7081B01B06B009FF8B0 /* Sources */,
+				A196D7091B01B06B009FF8B0 /* Frameworks */,
+				A196D70A1B01B06B009FF8B0 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				A196D7131B01B06B009FF8B0 /* PBXTargetDependency */,
+			);
+			name = ZYMoreWorkTests;
+			productName = ZYMoreWorkTests;
+			productReference = A196D70C1B01B06B009FF8B0 /* ZYMoreWorkTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -838,6 +927,10 @@
 				TargetAttributes = {
 					A118D3E81AF2109D009FB802 = {
 						CreatedOnToolsVersion = 6.3;
+					};
+					A196D70B1B01B06B009FF8B0 = {
+						CreatedOnToolsVersion = 6.3;
+						TestTargetID = A118D3E81AF2109D009FB802;
 					};
 				};
 			};
@@ -856,6 +949,7 @@
 			projectRoot = "";
 			targets = (
 				A118D3E81AF2109D009FB802 /* ZYMoreWork */,
+				A196D70B1B01B06B009FF8B0 /* ZYMoreWorkTests */,
 			);
 		};
 /* End PBXProject section */
@@ -882,6 +976,13 @@
 				A16B46371AFE2427007F50CE /* UMSocialLocalizable.strings in Resources */,
 				A1203AF01B009A9800E50F3B /* MJRefresh.bundle in Resources */,
 				A16B463F1AFE2428007F50CE /* UMSnsAccountViewController.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A196D70A1B01B06B009FF8B0 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -927,6 +1028,7 @@
 			files = (
 				A118D4851AF2280F009FB802 /* BaseNavigationViewController.m in Sources */,
 				A118D45A1AF21D20009FB802 /* UIProgressView+AFNetworking.m in Sources */,
+				A1A6C3E71B018B6C00F3BE7D /* DeformationButton.m in Sources */,
 				A19673691AFF3BAC000FF48C /* ZiXunViewController.m in Sources */,
 				A118D4581AF21D20009FB802 /* UIButton+AFNetworking.m in Sources */,
 				A196737D1B0078B1000FF48C /* DNWRootViewController.m in Sources */,
@@ -934,6 +1036,7 @@
 				A16B466C1AFE48EA007F50CE /* UIImage+ImageEffects.m in Sources */,
 				A118D4571AF21D20009FB802 /* UIAlertView+AFNetworking.m in Sources */,
 				A16B46731AFE64B2007F50CE /* MrEysionViewController.m in Sources */,
+				A1A6C3E81B018B6C00F3BE7D /* MMMaterialDesignSpinner.m in Sources */,
 				A118D4781AF21DD0009FB802 /* BaseTabBarViewController.m in Sources */,
 				A1203AF61B009A9800E50F3B /* MJRefreshHeader.m in Sources */,
 				A1203AF41B009A9800E50F3B /* MJRefreshGifFooter.m in Sources */,
@@ -962,6 +1065,7 @@
 				A10230AA1AFC8730002FE71B /* XiangQIngParse.m in Sources */,
 				A118D4591AF21D20009FB802 /* UIImageView+AFNetworking.m in Sources */,
 				A1E0AA481AFB3DEF0065A34D /* IosjobParse.m in Sources */,
+				A1DAB6971B00EAF70047ED2F /* FankuiViewController.m in Sources */,
 				A16B45E01AFCF9AB007F50CE /* BaomingSuccessViewController.m in Sources */,
 				A118D4521AF21D20009FB802 /* AFURLResponseSerialization.m in Sources */,
 				A16B45DD1AFCEBF3007F50CE /* BaomingViewController.m in Sources */,
@@ -988,7 +1092,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		A196D7081B01B06B009FF8B0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A196D7111B01B06B009FF8B0 /* ZYMoreWorkTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		A196D7131B01B06B009FF8B0 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A118D3E81AF2109D009FB802 /* ZYMoreWork */;
+			targetProxy = A196D7121B01B06B009FF8B0 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		A16B461D1AFE2427007F50CE /* UMSocialLocalizable.strings */ = {
@@ -1085,7 +1205,7 @@
 		};
 		A118D4101AF2109D009FB802 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B1B9F9B206CB3765BC5C6A20 /* Pods.debug.xcconfig */;
+			baseConfigurationReference = 8A469772C5FF9680197AF0EE /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -1105,17 +1225,30 @@
 					"$(PROJECT_DIR)/ZYMoreWork/第三方库/umeng_ios_social_sdk_4.2-5.2_arm64_custom/UMSocial_Sdk_4.2.2",
 					"$(PROJECT_DIR)/ZYMoreWork/第三方库/umeng_ios_social_sdk_4.2-5.2_arm64_custom/UMSocial_Sdk_Extra_Frameworks/TencentOpenAPI",
 					"$(PROJECT_DIR)/ZYMoreWork/第三方库/umeng_ios_social_sdk_4.2-5.2_arm64_custom/UMSocial_Sdk_Extra_Frameworks/Wechat",
-					"$(PROJECT_DIR)/ZYMoreWork/第三方库/UMSocial_Sdk_4.2.2",
 					"$(PROJECT_DIR)/ZYMoreWork/第三方库/UMSocial_Sdk_Extra_Frameworks/TencentOpenAPI",
 					"$(PROJECT_DIR)/ZYMoreWork/第三方库/UMSocial_Sdk_Extra_Frameworks/Wechat",
+					"$(PROJECT_DIR)/ZYMoreWork/视图/设置/环信的代码/3rdparty/UMeng",
+					"$(PROJECT_DIR)/ZYMoreWork/视图/设置/EaseMobSDK/lib",
+					"$(PROJECT_DIR)/ZYMoreWork/第三方库/UMSocial_Sdk_4.2.2",
 				);
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+					"-l\"Pods-MBProgressHUD\"",
+					"-l\"Pods-MDCSwipeToChoose\"",
+					"-framework",
+					"\"CoreGraphics\"",
+					"-framework",
+					"\"UIKit\"",
+				);
+				PODS_ROOT = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
 		};
 		A118D4111AF2109D009FB802 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 49218BEE9D34832B2CE80E36 /* Pods.release.xcconfig */;
+			baseConfigurationReference = 607288E940D56F40589705E3 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -1135,11 +1268,58 @@
 					"$(PROJECT_DIR)/ZYMoreWork/第三方库/umeng_ios_social_sdk_4.2-5.2_arm64_custom/UMSocial_Sdk_4.2.2",
 					"$(PROJECT_DIR)/ZYMoreWork/第三方库/umeng_ios_social_sdk_4.2-5.2_arm64_custom/UMSocial_Sdk_Extra_Frameworks/TencentOpenAPI",
 					"$(PROJECT_DIR)/ZYMoreWork/第三方库/umeng_ios_social_sdk_4.2-5.2_arm64_custom/UMSocial_Sdk_Extra_Frameworks/Wechat",
-					"$(PROJECT_DIR)/ZYMoreWork/第三方库/UMSocial_Sdk_4.2.2",
 					"$(PROJECT_DIR)/ZYMoreWork/第三方库/UMSocial_Sdk_Extra_Frameworks/TencentOpenAPI",
 					"$(PROJECT_DIR)/ZYMoreWork/第三方库/UMSocial_Sdk_Extra_Frameworks/Wechat",
+					"$(PROJECT_DIR)/ZYMoreWork/视图/设置/环信的代码/3rdparty/UMeng",
+					"$(PROJECT_DIR)/ZYMoreWork/视图/设置/EaseMobSDK/lib",
+					"$(PROJECT_DIR)/ZYMoreWork/第三方库/UMSocial_Sdk_4.2.2",
 				);
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+					"-l\"Pods-MBProgressHUD\"",
+					"-l\"Pods-MDCSwipeToChoose\"",
+					"-framework",
+					"\"CoreGraphics\"",
+					"-framework",
+					"\"UIKit\"",
+				);
+				PODS_ROOT = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		A196D7151B01B06B009FF8B0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = ZYMoreWorkTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ZYMoreWork.app/ZYMoreWork";
+			};
+			name = Debug;
+		};
+		A196D7161B01B06B009FF8B0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = ZYMoreWorkTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ZYMoreWork.app/ZYMoreWork";
 			};
 			name = Release;
 		};
@@ -1160,6 +1340,15 @@
 			buildConfigurations = (
 				A118D4101AF2109D009FB802 /* Debug */,
 				A118D4111AF2109D009FB802 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A196D7141B01B06B009FF8B0 /* Build configuration list for PBXNativeTarget "ZYMoreWorkTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A196D7151B01B06B009FF8B0 /* Debug */,
+				A196D7161B01B06B009FF8B0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

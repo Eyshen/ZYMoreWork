@@ -10,6 +10,11 @@
 #import "ParallaxHeaderView.h"
 #import "StoryViewController.h"
 #import "MrEysionViewController.h"
+#import "FankuiViewController.h"
+//环信
+//#import "ChatViewController.h"
+//#import "EaseMob.h"
+
 @interface StoryViewController ()<UITableViewDataSource,UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *mainTableView;
 
@@ -32,6 +37,9 @@
     
     _mainTableView.separatorColor=[UIColor clearColor];
     [self.mainTableView setTableHeaderView:headerView];
+    
+    
+    
     
 }
 -(BOOL)prefersStatusBarHidden
@@ -105,12 +113,21 @@
         UIAlertView *av=[[UIAlertView alloc]initWithTitle:@"客服热线" message:telStr delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"拨打", nil];
         [av show];
     }
+    if (indexPath.row==1) {
+//        ChatViewController *chatVC=[[ChatViewController alloc]initWithChatter:@"zhangyi" isGroup:NO];
+//        [self presentViewController:chatVC animated:YES completion:nil];
+        UIStoryboard *storyboard=[UIStoryboard storyboardWithName:@"Set" bundle:nil];
+         FankuiViewController*fankui=[storyboard instantiateViewControllerWithIdentifier:@"FankuiViewController"];
+        [self.navigationController pushViewController:fankui animated:YES];
+        
+        
+    }
 }
 
 
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    NSLog(@"buttonIndex%u",buttonIndex);
+    NSLog(@"buttonIndex%ld",(long)buttonIndex);
     if (buttonIndex==1) {
         NSString *telStr=@"tel://400-010-1111";
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:telStr]];

@@ -1,5 +1,11 @@
-#tform :ios, '7.0'
+platform :ios, "7.0"
 
-pod 'MDCSwipeToChoose'
+pod "MDCSwipeToChoose"
 
-pod 'MBProgressHUD', '~> 0.9.1'
+pod "MBProgressHUD"
+pod "AMap2DMap"
+pod "AMapSearch"
+
+target :ZYMoreWorkTests, :exclusive => true do
+  # pod 'Kiwi'
+end

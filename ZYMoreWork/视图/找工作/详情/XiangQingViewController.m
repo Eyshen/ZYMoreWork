@@ -143,7 +143,7 @@
 }
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    NSLog(@"buttonIndex%u",buttonIndex);
+    NSLog(@"buttonIndex%ld",(long)buttonIndex);
     if (buttonIndex==1) {
         NSString *telStr=[NSString stringWithFormat:@"tel://%@",_info.mobile];
         NSLog(@"%@",telStr);

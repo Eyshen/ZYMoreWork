@@ -11,8 +11,14 @@
 
 #import "DNWRootViewController.h"
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate>
+//环信
+//#import "ApplyViewController.h"
 
+@interface AppDelegate : UIResponder <UIApplicationDelegate>
+//
+//{
+//    EMConnectionState _connectionState;
+//}
 
 
 @property (strong, nonatomic) UIWindow *window;

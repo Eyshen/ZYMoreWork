@@ -10,6 +10,12 @@
 #import "MLBlackTransition.h"
 #import "UMSocial.h"
 #import "UMSocialWechatHandler.h"
+
+//环信
+//#import "AppDelegate+EaseMob.h"
+//#import "AppDelegate+UMeng.h"
+//#import <CoreLocation/CoreLocation.h>
+
 @interface AppDelegate ()
 
 @end
@@ -17,6 +23,9 @@
 @implementation AppDelegate
 {
 //    BMKMapManager *_mapManager;
+    //环信
+//    CLLocationManager * manager;
+    
 }
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     //友盟分享
@@ -42,6 +51,32 @@
     
 #pragma --地图定位功能
     
+#pragma mark--------环信
+    /*
+    manager = [CLLocationManager new];
+    [manager requestWhenInUseAuthorization];
+    _connectionState = eEMConnectionConnected;
+    
+    //    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    //    self.window.backgroundColor = [UIColor whiteColor];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(loginStateChange:)
+                                                 name:KNOTIFICATION_LOGINCHANGE
+                                               object:nil];
+    
+    if ([UIDevice currentDevice].systemVersion.floatValue >= 7.0) {
+        [[UINavigationBar appearance] setBarTintColor:RGBACOLOR(78, 188, 211, 1)];
+        [[UINavigationBar appearance] setTitleTextAttributes:
+         [NSDictionary dictionaryWithObjectsAndKeys:RGBACOLOR(245, 245, 245, 1), NSForegroundColorAttributeName, [UIFont fontWithName:@ "HelveticaNeue-CondensedBlack" size:21.0], NSFontAttributeName, nil]];
+    }
+    
+    // 环信UIdemo中有用到友盟统计crash，您的项目中不需要添加，可忽略此处。
+    [self setupUMeng];
+    
+    // 初始化环信SDK，详细内容在AppDelegate+EaseMob.m 文件中
+    [self easemobApplication:application didFinishLaunchingWithOptions:launchOptions];
+    
+*/
     
     
     //设置工具栏的颜色
@@ -49,10 +84,57 @@
     return YES;
 }
 
+/*
+#pragma mark - private
+//登陆状态改变
+-(void)loginStateChange:(NSNotification *)notification
+{
+    UINavigationController *nav = nil;
+    
+    BOOL isAutoLogin = [[[EaseMob sharedInstance] chatManager] isAutoLoginEnabled];
+    BOOL loginSuccess = [notification.object boolValue];
+    
+    if (isAutoLogin || loginSuccess) {//登陆成功加载主窗口控制器
+        //加载申请通知的数据
+        [[ApplyViewController shareController] loadDataSourceFromLocalDB];
+        
+    }else{//登陆失败加载登陆页面控制器
+        
+    }
+    
+    //设置7.0以下的导航栏
+    if ([UIDevice currentDevice].systemVersion.floatValue < 7.0){
+        nav.navigationBar.barStyle = UIBarStyleDefault;
+        [nav.navigationBar setBackgroundImage:[UIImage imageNamed:@"titleBar"]
+                                forBarMetrics:UIBarMetricsDefault];
+        
+        [nav.navigationBar.layer setMasksToBounds:YES];
+    }
+    
+    self.window.rootViewController = nav;
+    
+    [nav setNavigationBarHidden:YES];
+    [nav setNavigationBarHidden:NO];
+}
+ */
+//环信
+//- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
+//{
+//    
+//}
+//
+//- (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification
+//{
+//    
+//}
+
+
+
 +(AppDelegate *)shareDelegate
 {
     return [UIApplication sharedApplication].delegate;
 }
+
 
 - (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url
 {

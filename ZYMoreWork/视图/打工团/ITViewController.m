@@ -13,10 +13,14 @@
 #import "CompanyViewController.h"
 
 #import "MBProgressHUD.h"
+
+//按钮
+#import "DeformationButton.h"
+
 static const CGFloat ChoosePersonButtonHorizontalPadding=80.f;
 static const CGFloat ChoosePersonButtonVerticalPadding=20.f;
 
-@interface ITViewController ()<MBProgressHUDDelegate>
+@interface ITViewController ()<MBProgressHUDDelegate,UITableViewDataSource,UITableViewDelegate>
 @property(nonatomic,strong)NSMutableArray *people;
 @property(nonatomic,strong)NSMutableArray *jobArr;
 @end
@@ -27,13 +31,56 @@ static const CGFloat ChoosePersonButtonVerticalPadding=20.f;
     NSInteger _page;
     //HUD（Head-Up Display，意思是抬头显示的意思）
     MBProgressHUD *HUD;
+    
+    //按钮
+    DeformationButton *deformationBtn;
+    //关注的公司
+    NSMutableArray *_companyData;
+    
+    CGFloat _width;
+    CGFloat _height;
+    
+    
+    UIView *_bgView;
+    UITableView *_myTableView;
 }
+//按钮颜色 设置
+
+- (UIColor *)getColor:(NSString *)hexColor
+{
+    unsigned int red,green,blue;
+    NSRange range;
+    range.length = 2;
+    
+    range.location = 0;
+    [[NSScanner scannerWithString:[hexColor substringWithRange:range]] scanHexInt:&red];
+    
+    range.location = 2;
+    [[NSScanner scannerWithString:[hexColor substringWithRange:range]] scanHexInt:&green];
+    
+    range.location = 4;
+    [[NSScanner scannerWithString:[hexColor substringWithRange:range]] scanHexInt:&blue];
+    
+    return [UIColor colorWithRed:(float)(red/255.0f) green:(float)(green / 255.0f) blue:(float)(blue / 255.0f) alpha:1.0f];
+    
+}
+
+
 
 #pragma mark----UIViewController Overrides(重写)
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    _companyData=[NSMutableArray new];
 //    _people =[[self defaultPeople] mutableCopy];
+    
+    _width=self.view.frame.size.width;
+    _height=self.view.frame.size.height;
+    
+    [self.navigationController.navigationBar setBarTintColor:[UIColor colorWithRed:0.077 green:0.262 blue:0.378 alpha:1.000]];
+    
+    
+    
     
     // Do any additional setup after loading the view.
     HUD = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
@@ -59,8 +106,137 @@ static const CGFloat ChoosePersonButtonVerticalPadding=20.f;
     } pageSize:@"1"];
     
     
+#pragma mark----按钮
+    deformationBtn = [[DeformationButton alloc]initWithFrame:CGRectMake(20, 10, 90, 36)];
+    deformationBtn.contentColor = [self getColor:@"52c332"];
+    deformationBtn.progressColor = [UIColor whiteColor];
+    [self.view addSubview:deformationBtn];
+    
+    [deformationBtn.forDisplayButton setTitle:@"关注的公司" forState:UIControlStateNormal];
+    
+    [deformationBtn.forDisplayButton.titleLabel setFont:[UIFont systemFontOfSize:15]];
+    [deformationBtn.forDisplayButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [deformationBtn.forDisplayButton setTitleEdgeInsets:UIEdgeInsetsMake(0, 6, 0, 0)];
+    
+    [deformationBtn.forDisplayButton setImage:[UIImage imageNamed:nil] forState:UIControlStateNormal];
+    UIImage *bgImage = [UIImage imageNamed:@"button_bg"];
+    [deformationBtn.forDisplayButton setBackgroundImage:[bgImage resizableImageWithCapInsets:UIEdgeInsetsMake(10, 10, 10, 10)] forState:UIControlStateNormal];
+    
+    [deformationBtn addTarget:self action:@selector(btnEvent:) forControlEvents:UIControlEventTouchUpInside];
+    
+    
     
 }
+
+#pragma mark----小表格
+- (void)btnEvent:(DeformationButton *)sender{
+    sender.selected=!sender.selected;
+    NSLog(@"btnEvent-----%d",sender.selected);
+    
+    if (_bgView==nil) {
+        
+        
+        _bgView=[[UIView alloc]initWithFrame:CGRectMake(20, 60+_height, _width-40, 7*53)];
+        _bgView.backgroundColor=[UIColor colorWithRed:0.929 green:0.949 blue:0.976 alpha:1.000];
+        _myTableView=[[UITableView alloc]initWithFrame:CGRectMake(0, 0,_width-40, 7*53)];
+        _myTableView.delegate=self;
+        _myTableView.dataSource=self;
+        
+        //    _bgView.backgroundColor=[UIColor yellowColor];
+        [_bgView addSubview:_myTableView];
+        
+        [self.view addSubview:_bgView];
+    }
+    if (sender.selected==1) {
+        [_myTableView reloadData];
+        if (_companyData==nil) {
+            UIAlertView *av=[[UIAlertView alloc]initWithTitle:@"提示" message:@"你还没有关注哪家公司" delegate:nil cancelButtonTitle:@"知道了" otherButtonTitles: nil];
+            [av show];
+        }else{
+            CGRect frame=_bgView.frame;
+            frame.origin.y-=_height+15;
+            CGRect framea=frame;
+            framea.origin.y+=15;
+            [UIView animateWithDuration:1 animations:^{
+                _bgView.frame=frame;
+            } completion:^(BOOL finished) {
+                [UIView animateWithDuration:0.8 animations:^{
+                    _bgView.frame=framea;
+                }];
+            }];
+            
+        }
+    }else
+    {
+        CGRect frame=_bgView.frame;
+        frame.origin.y+=_height;
+        [UIView animateWithDuration:0.5 animations:^{
+            _bgView.frame=frame;
+        }];
+    }
+    
+}
+#pragma mark----小表格lifecyle
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return  _companyData.count;
+}
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 50;
+}
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    static NSString *identifiter=@"cellID";
+    UITableViewCell *cell=[tableView dequeueReusableCellWithIdentifier:identifiter];
+    if (!cell) {
+        cell=[[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifiter];
+        
+        UIImageView *iv=[[UIImageView alloc]initWithFrame:CGRectMake(5, 5, 40, 40)];
+        iv.tag=70;
+        
+        UILabel *companyLabel=[[UILabel alloc]initWithFrame:CGRectMake(55, 0,cell.contentView.frame.size.width-55, 30)];
+        companyLabel.font=[UIFont systemFontOfSize:15];
+        companyLabel.tag=71;
+        
+        UILabel *gongziLabel=[[UILabel alloc]initWithFrame:CGRectMake(55, 30,cell.contentView.frame.size.width-55, 20)];
+        gongziLabel.font=[UIFont systemFontOfSize:13];
+        gongziLabel.tag=72;
+        [cell.contentView addSubview:iv];
+        [cell.contentView addSubview:companyLabel];
+        [cell.contentView addSubview:gongziLabel];
+    }
+    
+    UIImageView *iv=(UIImageView *)[cell.contentView viewWithTag:70];
+    UILabel *comLabel=(UILabel *)[cell.contentView viewWithTag:71];
+    UILabel *gongziLabel=(UILabel *)[cell.contentView viewWithTag:72];
+    
+    
+    IosjobInfo *info=_companyData[indexPath.row];
+    NSString *logoStr=[NSString stringWithFormat:@"http://www.lagou.com/%@",info.companyLogo];
+    [iv setImageWithURL:[NSURL URLWithString:logoStr]];
+    
+    comLabel.text=info.companyName;
+    
+    gongziLabel.text=info.salary;
+    NSLog(@"cell 走吗?%@",info.companyLogo);
+    
+    return cell;
+}
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    UIStoryboard *storyboard=[UIStoryboard storyboardWithName:@"Gongtuan" bundle:nil];
+    IosjobInfo *info=_companyData[indexPath.row];
+    
+    CompanyViewController *companyVC=[storyboard instantiateViewControllerWithIdentifier:@"CompanyViewController"];
+    companyVC.titleLabel=info.companyName;
+    companyVC.companyId=info.positionId;
+    
+    
+    [self.navigationController pushViewController:companyVC animated:YES];
+}
+
 -(void)creatCarViewAndButton
 {
     // Display the first ChoosePersonView in front. Users can swipe to indicate
@@ -137,10 +313,16 @@ static const CGFloat ChoosePersonButtonVerticalPadding=20.f;
         NSLog(@"You noped %@.", _currentInfo.companyName);
     } else {
         NSLog(@"You liked %@.", _currentInfo.companyName);
+        
+        
         UIStoryboard *storyboard=[UIStoryboard storyboardWithName:@"Gongtuan" bundle:nil];
         CompanyViewController *companyVC=[storyboard instantiateViewControllerWithIdentifier:@"CompanyViewController"];
         companyVC.titleLabel=_currentInfo.companyName;
         companyVC.companyId=_currentInfo.positionId;
+        
+        [_companyData addObject:_currentInfo];
+        
+        
         [self.navigationController pushViewController:companyVC animated:YES];
     }
     //MDCSwipeToChooseView removes the view from the view hierarchy--MD 移除View 从 View的层级里
@@ -162,6 +344,7 @@ static const CGFloat ChoosePersonButtonVerticalPadding=20.f;
 {
     //记录 person 为当前选择的 person
     _frontCardView=frontCardView;
+    
 //    self.currentPerson=frontCardView.person;
     self.currentInfo=frontCardView.info;
 }
@@ -246,6 +429,7 @@ static const CGFloat ChoosePersonButtonVerticalPadding=20.f;
 //                                         green:91.f/255.f
 //                                          blue:37.f/255.f
 //                                         alpha:1.f]];
+    
     [button addTarget:self
                action:@selector(nopeFrontCardView)
      forControlEvents:UIControlEventTouchUpInside];
@@ -295,6 +479,12 @@ static const CGFloat ChoosePersonButtonVerticalPadding=20.f;
     
     
     [self.view addSubview:label];
+    
+    
+    
+    
+    
+    
     
 }
 -(void)btnClick

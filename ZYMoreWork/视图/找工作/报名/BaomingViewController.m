@@ -84,7 +84,7 @@
 }
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    NSLog(@"buttonIndex%u",buttonIndex);
+    NSLog(@"buttonIndex%ld",(long)buttonIndex);
     if (buttonIndex==0) {
         NSLog(@"知道了");
     }

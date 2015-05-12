@@ -94,6 +94,26 @@
             </objects>
             <point key="canvasLocation" x="127" y="466"/>
         </scene>
+        <!--意见反馈-->
+        <scene sceneID="KfJ-P3-sia">
+            <objects>
+                <viewController storyboardIdentifier="FankuiViewController" hidesBottomBarWhenPushed="YES" id="8Qx-NB-ftm" customClass="FankuiViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="4ei-Ha-KBj"/>
+                        <viewControllerLayoutGuide type="bottom" id="kNN-1F-tpL"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Vs7-4j-jba">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="536"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="意见反馈" id="Erk-iX-udL"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Egk-l6-JLq" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="836" y="-205"/>
+        </scene>
         <!--技术支持-->
         <scene sceneID="Hlb-v7-duW">
             <objects>

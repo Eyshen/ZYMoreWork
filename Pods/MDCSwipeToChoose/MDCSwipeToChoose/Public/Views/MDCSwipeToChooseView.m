@@ -76,6 +76,7 @@ static CGFloat const MDCSwipeToChooseViewLabelWidth = 65.f;
 }
 
 - (void)constructLikedView {
+    //修改了这
     CGRect frame = CGRectMake(MDCSwipeToChooseViewHorizontalPadding,
                               MDCSwipeToChooseViewTopPadding,
                               CGRectGetMidX(self.bounds),
@@ -88,6 +89,7 @@ static CGFloat const MDCSwipeToChooseViewLabelWidth = 65.f;
     [self addSubview:self.likedView];
 }
 
+
 - (void)constructNopeImageView {
     CGFloat width = CGRectGetMidX(self.bounds);
     CGFloat xOrigin = CGRectGetMaxX(self.bounds) - width - MDCSwipeToChooseViewHorizontalPadding;
@@ -98,6 +100,7 @@ static CGFloat const MDCSwipeToChooseViewLabelWidth = 65.f;
     [self.nopeView constructBorderedLabelWithText:self.options.nopeText
                                             color:self.options.nopeColor
                                             angle:self.options.nopeRotationAngle];
+    
     self.nopeView.alpha = 0.f;
     [self addSubview:self.nopeView];
 }

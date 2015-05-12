@@ -704,7 +704,7 @@
     if (sender.tag==300) {
         gangweiStr=@"0";
     }else{
-        gangweiStr=[NSString stringWithFormat:@"%u",8430+sender.tag-300];
+        gangweiStr=[NSString stringWithFormat:@"%d",8430+sender.tag-300];
     }
     [UIApplication sharedApplication].networkActivityIndicatorVisible=YES;
     [FindNetWork getFindWorkSuccess:^(FindWorkParse *parse) {

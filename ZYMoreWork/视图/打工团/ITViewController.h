@@ -11,7 +11,7 @@
 
 @interface ITViewController : BaseViewController<MDCSwipeToChooseDelegate>
 
-@property (nonatomic,strong)Person *currentPerson;
+//@property (nonatomic,strong)Person *currentPerson;
 @property (nonatomic,strong)IosjobInfo *currentInfo;
 
 @property (nonatomic,strong)ChoosePersonView *frontCardView;
