@@ -17,10 +17,11 @@
 @interface FindNetWork : NSObject
 
 //获取第一页数据请求
-+(void)getFindWorkSuccess:(void(^)(FindWorkParse *parse))success failure:(void(^)(NSString *errorMessage))failure withIDStr:(NSString *)idStr withGangID:(NSString *)gangStr withSort:(NSString *)sortStr page:(NSString *)page;
++(void)getFindWorkSuccess:(void(^)(FindWorkParse *parse))success failure:(void(^)(NSString *errorMessage))failure withIDStr:(NSString *)idStr withGangID:(NSString *)gangStr withSort:(NSString *)sortStr page:(NSString *)page cityID:(NSString *)cityID;
 
 #pragma mark----第一页公司详情
 +(void)getCompanyInfoSuccess:(void(^)(XiangQIngParse *parse))success failure:(void(^)(NSString *errorMessage))failure withCompanyID:(NSString *)companyId;
+
 
 +(void)getFindGongTuanSuccess:(void(^)(GongTuanParse *parse))success failure:(void(^)(NSString *errorMessage))failure;
 

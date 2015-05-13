@@ -52,6 +52,7 @@
         
         [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"firstStart"];
         
+        
         UIImageView *iv = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, width,height)];
         iv.image = [UIImage imageNamed:@"begind"];
         iv.userInteractionEnabled = YES;

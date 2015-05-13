@@ -9,15 +9,16 @@
 #import "FindNetWork.h"
 
 @implementation FindNetWork
-+(void)getFindWorkSuccess:(void (^)(FindWorkParse *))success failure:(void (^)(NSString *))failure withIDStr:(NSString *)idStr withGangID:(NSString *)gangStr withSort:(NSString *)sortStr page:(NSString *)page
++(void)getFindWorkSuccess:(void (^)(FindWorkParse *))success failure:(void (^)(NSString *))failure withIDStr:(NSString *)idStr withGangID:(NSString *)gangStr withSort:(NSString *)sortStr page:(NSString *)page cityID:(NSString *)cityID
 {
     AFHTTPRequestOperationManager *manager=[AFHTTPRequestOperationManager manager];
     
     
     //wapi.chinalao.com/app/index20150401?city_id=4226&sort=0&page=1&page_size=10&thirdid=0&gangweiid=0
+    http://wapi.chinalao.com/app/index20150401?city_id=2&sort=1&page=1&page_size=10&thirdid=0&gangweiid=0
     
     manager.responseSerializer.acceptableContentTypes=[NSSet setWithObject:@"text/html"];
-    [manager GET:@"http://wapi.chinalao.com/app/index20150401" parameters:@{@"city_id":@"4226",@"sort":sortStr,@"page":page,@"page_size":@"10",@"thirdid":idStr,@"gangweiid":gangStr} success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [manager GET:@"http://wapi.chinalao.com/app/index20150401" parameters:@{@"city_id":cityID,@"sort":sortStr,@"page":page,@"page_size":@"10",@"thirdid":idStr,@"gangweiid":gangStr} success:^(AFHTTPRequestOperation *operation, id responseObject) {
         
         success([FindWorkParse parse:responseObject]);
         

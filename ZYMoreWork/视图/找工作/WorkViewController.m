@@ -49,6 +49,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     _page=2;
+    _cityID=@"4226";
     // Do any additional setup after loading the view.
     //设置 每个 分区的开关;
     _searchWorkData=[NSMutableArray new];
@@ -121,6 +122,10 @@
     // 此时self.tableView.footer == self.tableView.gifFooter
 }
 
+-(void)beginRefreshing
+{
+    [self.myTableView.gifHeader beginRefreshing];
+}
 -(void)loadNewData
 {
     [UIApplication sharedApplication].networkActivityIndicatorVisible=YES;
@@ -138,7 +143,7 @@
         NSLog(@"下载失败");
         [UIApplication sharedApplication].networkActivityIndicatorVisible=NO;
         [self.myTableView.header endRefreshing];
-    }withIDStr:@"0" withGangID:@"0" withSort:@"0" page:@"1"];
+    }withIDStr:@"0" withGangID:@"0" withSort:@"0" page:@"1" cityID:_cityID];
     
 }
 -(void)loadMoreData
@@ -160,7 +165,7 @@
     } failure:^(NSString *errorMessage) {
         NSLog(@"下载失败");
         [UIApplication sharedApplication].networkActivityIndicatorVisible=NO;
-    }withIDStr:@"0" withGangID:@"0" withSort:@"0" page:pageStr];
+    }withIDStr:@"0" withGangID:@"0" withSort:@"0" page:pageStr cityID:_cityID];
     _page++;
 }
 
@@ -285,7 +290,7 @@
 #pragma mark---公司详情 和 报名按钮
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    
+    [self.view endEditing:YES];
     if ([segue.identifier isEqualToString:@"XiangQingViewController"]) {
         XiangQingViewController *xiangqingVC=segue.destinationViewController;
         NSIndexPath *indexPath=[_myTableView indexPathForCell:sender];
@@ -496,8 +501,8 @@
     [btn addTarget:self action:@selector(cellBtn:) forControlEvents:UIControlEventTouchUpInside];
     
     
-    NSString *titleStr=[NSString stringWithFormat:@"该企业还有其他%u条岗位也在招聘",arr.count-1];
-    NSString *numStr=[NSString stringWithFormat:@"%u条",arr.count-1];
+    NSString *titleStr=[NSString stringWithFormat:@"该企业还有其他%lu条岗位也在招聘",arr.count-1];
+    NSString *numStr=[NSString stringWithFormat:@"%lu条",arr.count-1];
     NSMutableAttributedString *attribut=[[NSMutableAttributedString alloc]initWithString:titleStr];
     NSDictionary *attributType=@{NSForegroundColorAttributeName:[UIColor redColor]};
     NSRange range=[titleStr rangeOfString:numStr];
@@ -680,7 +685,7 @@
     } failure:^(NSString *errorMessage) {
         NSLog(@"下载失败");
         [UIApplication sharedApplication].networkActivityIndicatorVisible=NO;
-    }withIDStr:_thirdidArr[sender.tag-200] withGangID:@"0" withSort:@"0" page:@"1"];
+    }withIDStr:_thirdidArr[sender.tag-200] withGangID:@"0" withSort:@"0" page:@"1" cityID:_cityID];
     _quyuStr=_thirdidArr[sender.tag-200];
     
     if (sender.tag==200) {
@@ -704,7 +709,7 @@
     if (sender.tag==300) {
         gangweiStr=@"0";
     }else{
-        gangweiStr=[NSString stringWithFormat:@"%d",8430+sender.tag-300];
+        gangweiStr=[NSString stringWithFormat:@"%ld",8430+sender.tag-300];
     }
     [UIApplication sharedApplication].networkActivityIndicatorVisible=YES;
     [FindNetWork getFindWorkSuccess:^(FindWorkParse *parse) {
@@ -718,7 +723,7 @@
     } failure:^(NSString *errorMessage) {
         NSLog(@"下载失败%@",errorMessage);
         [UIApplication sharedApplication].networkActivityIndicatorVisible=NO;
-    } withIDStr:_quyuStr withGangID:gangweiStr withSort:@"0" page:@"1"];
+    } withIDStr:_quyuStr withGangID:gangweiStr withSort:@"0" page:@"1" cityID:_cityID];
     _kindStr=gangweiStr;
     NSLog(@"地区%@",gangweiStr);
 }
@@ -732,7 +737,7 @@
     _paixuView.hidden=YES;
     
     [UIApplication sharedApplication].networkActivityIndicatorVisible=YES;
-    NSString *sort=[NSString stringWithFormat:@"%d",sender.tag-400+1];
+    NSString *sort=[NSString stringWithFormat:@"%ld",sender.tag-400+1];
     [FindNetWork getFindWorkSuccess:^(FindWorkParse *parse) {
         NSLog(@"paixun下载成功");
         _workParse=parse;
@@ -744,7 +749,7 @@
     } failure:^(NSString *errorMessage) {
         NSLog(@"下载失败%@",errorMessage);
         [UIApplication sharedApplication].networkActivityIndicatorVisible=NO;
-    } withIDStr:_quyuStr withGangID:_kindStr withSort:sort page:@"1"];
+    } withIDStr:_quyuStr withGangID:_kindStr withSort:sort page:@"1" cityID:_cityID];
     
 }
 

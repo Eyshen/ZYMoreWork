@@ -43,8 +43,8 @@
 {
     NSArray *_cityArr;
     UIButton *_leftButton;
-    
-    
+    NSArray *_cityIDArr;
+    NSString *_seleCity;
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -395,38 +395,83 @@ updatingLocation:(BOOL)updatingLocation
     BaseNavigationViewController *nc=self.midTBC.viewControllers[0];
     WorkViewController *vc=nc.viewControllers[0];
     
+    [vc beginRefreshing];
     if (indexPath.section==0) {
+        int open=0;
         [_leftButton setTitle:_nowCity forState:UIControlStateNormal];
-    }else{
-        [_leftButton setTitle:_cityArr[indexPath.row] forState:UIControlStateNormal];
-    }
-    
-    
-    
-    [UIView animateWithDuration:0.3 animations:^{
-        
-        self.leftview.frame=CGRectMake(-ScreenWidth, 0, ScreenWidth, ScreenHeight);
-        
-        CGAffineTransform centerTranslate = CGAffineTransformMakeTranslation(1, 0.0);
-        CGAffineTransform centerScale = CGAffineTransformMakeScale(1 , 1);
-        self.midTBC.view.transform = CGAffineTransformConcat(centerScale, centerTranslate);
-        
-        self.midTBC.view.frame = CGRectMake(0, 0, ScreenWidth, ScreenHeight);
-        
-        _x=0;
-        
-        _ismove=0;
-    } completion:^(BOOL finished) {
-        
-        if (![_cityArr[indexPath.row] isEqualToString:@"青岛"]) {
-            [vc setAlterView];
+        for (int i=0;i<14;i++) {
+            if ([_nowCity isEqualToString:_cityArr[i]]) {
+                
+                vc.cityID=_cityIDArr[i];
+                open=1;
+            }
+        }
+        if (open==1) {
+            [UIView animateWithDuration:0.3 animations:^{
+                
+                self.leftview.frame=CGRectMake(-ScreenWidth, 0, ScreenWidth, ScreenHeight);
+                
+                CGAffineTransform centerTranslate = CGAffineTransformMakeTranslation(1, 0.0);
+                CGAffineTransform centerScale = CGAffineTransformMakeScale(1 , 1);
+                self.midTBC.view.transform = CGAffineTransformConcat(centerScale, centerTranslate);
+                
+                self.midTBC.view.frame = CGRectMake(0, 0, ScreenWidth, ScreenHeight);
+                
+                _x=0;
+                
+                _ismove=0;
+            } completion:^(BOOL finished) {
+                
+            }];
+        }else{
+            if (_seleCity==nil) {
+                [_leftButton setTitle:@"青岛" forState:UIControlStateNormal];
+            }else{
+                [_leftButton setTitle:_seleCity forState:UIControlStateNormal];
+            }
+            [UIView animateWithDuration:0.3 animations:^{
+                
+                self.leftview.frame=CGRectMake(-ScreenWidth, 0, ScreenWidth, ScreenHeight);
+                
+                CGAffineTransform centerTranslate = CGAffineTransformMakeTranslation(1, 0.0);
+                CGAffineTransform centerScale = CGAffineTransformMakeScale(1 , 1);
+                self.midTBC.view.transform = CGAffineTransformConcat(centerScale, centerTranslate);
+                
+                self.midTBC.view.frame = CGRectMake(0, 0, ScreenWidth, ScreenHeight);
+                
+                _x=0;
+                
+                _ismove=0;
+            } completion:^(BOOL finished) {
+                [vc setAlterView];
+            }];
         }
         
-    }];
-    
-    
-    
-    
+        
+        
+    }else{
+        [_leftButton setTitle:_cityArr[indexPath.row] forState:UIControlStateNormal];
+        _seleCity=_cityArr[indexPath.row];
+        
+        vc.cityID=_cityIDArr[indexPath.row];
+        
+        [UIView animateWithDuration:0.3 animations:^{
+            
+            self.leftview.frame=CGRectMake(-ScreenWidth, 0, ScreenWidth, ScreenHeight);
+            
+            CGAffineTransform centerTranslate = CGAffineTransformMakeTranslation(1, 0.0);
+            CGAffineTransform centerScale = CGAffineTransformMakeScale(1 , 1);
+            self.midTBC.view.transform = CGAffineTransformConcat(centerScale, centerTranslate);
+            
+            self.midTBC.view.frame = CGRectMake(0, 0, ScreenWidth, ScreenHeight);
+            
+            _x=0;
+            
+            _ismove=0;
+        } completion:^(BOOL finished) {
+        
+        }];
+    }
     
     
 }
@@ -767,7 +812,9 @@ updatingLocation:(BOOL)updatingLocation
 }
 -(void)updateData
 {
-    _cityArr=@[@"北京",@"长沙",@"重庆",@"东莞",@"福州",@"济南",@"兰州",@"南京",@"青岛",@"上海",@"天津",@"武汉",@"西安",@"郑州"];
+    _cityArr=@[@"北京",@"保定",@"重庆",@"东莞",@"福州",@"济南",@"兰州",@"南京",@"青岛",@"上海",@"天津",@"武汉",@"西安",@"郑州"];
+    _cityIDArr=@[@"2",@"539",@"6684",@"5559",@"3549",@"4045",@"8035",@"2512",@"4226",@"2160",@"403",@"4975",@"7812",@"4744"];
+    
 }
 
 

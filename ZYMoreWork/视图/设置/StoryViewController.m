@@ -111,7 +111,7 @@
         [self.navigationController pushViewController:eysion animated:YES];
     }
     if (indexPath.row==5) {
-        NSString *telStr=@"电话:400-010-1111";
+        NSString *telStr=@"电话:15504146727";
         UIAlertView *av=[[UIAlertView alloc]initWithTitle:@"客服热线" message:telStr delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"拨打", nil];
         [av show];
     }
@@ -139,7 +139,7 @@
 {
     NSLog(@"buttonIndex%ld",(long)buttonIndex);
     if (buttonIndex==1) {
-        NSString *telStr=@"tel://400-010-1111";
+        NSString *telStr=@"tel://15504146727";
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:telStr]];
     }
 }
@@ -148,7 +148,7 @@
 {
 _imageArr=@[@"setting1",@"setting2",@"setting3",@"setting4",@"setting5",@"setting6",@"setting7"];
     _titleArr=@[@"仅wifi网络下显示图片",@"意见反馈",@"关于我们",@"用户",@"官方主页",@"客服热线"];
-    _infoArr=@[@"http://blog.csdn.net/mreshen",@"400-010-1111"];
+    _infoArr=@[@"http://blog.csdn.net/mreshen",@"155-0414-6727"];
     
 }
 - (void)didReceiveMemoryWarning {

@@ -95,9 +95,7 @@
     _page=2;
     if (_page==2) {
         [UIApplication sharedApplication].networkActivityIndicatorVisible=YES;
-        
         sleep(1);
-        
         [_myTableView reloadData];
         
         [UIApplication sharedApplication].networkActivityIndicatorVisible=NO;

@@ -10,7 +10,8 @@
 #import "FindNetWork.h"
 @interface WorkViewController : BaseViewController
 
+@property (nonatomic,strong)NSString *cityID;
 
-
+-(void)beginRefreshing;
 -(void)setAlterView;
 @end
