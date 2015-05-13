@@ -152,20 +152,20 @@ static const CGFloat ChoosePersonButtonVerticalPadding=20.f;
         if (_companyData.count==0) {
             UIAlertView *av=[[UIAlertView alloc]initWithTitle:@"提示" message:@"你还没有查看哪家公司的详情" delegate:nil cancelButtonTitle:@"知道了" otherButtonTitles: nil];
             [av show];
-        }else{
-            CGRect frame=_bgView.frame;
-            frame.origin.y-=_height+15;
-            CGRect framea=frame;
-            framea.origin.y+=15;
-            [UIView animateWithDuration:1 animations:^{
-                _bgView.frame=frame;
-            } completion:^(BOOL finished) {
-                [UIView animateWithDuration:0.8 animations:^{
-                    _bgView.frame=framea;
-                }];
-            }];
-            
         }
+        CGRect frame=_bgView.frame;
+        frame.origin.y-=_height+15;
+        CGRect framea=frame;
+        framea.origin.y+=15;
+        [UIView animateWithDuration:1 animations:^{
+            _bgView.frame=frame;
+        } completion:^(BOOL finished) {
+            [UIView animateWithDuration:0.8 animations:^{
+                _bgView.frame=framea;
+            }];
+        }];
+        
+        
     }else
     {
         CGRect frame=_bgView.frame;
